@@ -8,6 +8,7 @@ export default function CustomCursor() {
   const [hovering, setHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [inTorchZone, setInTorchZone] = useState(false);
 
   useEffect(() => {
     // Disable on touch devices
@@ -53,6 +54,8 @@ export default function CustomCursor() {
     const checkHover = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (!target || !target.closest) return;
+      const isTorch = !!target.closest('[data-torch-zone]');
+      setInTorchZone(isTorch);
       const interactive = target.closest(
         'a, button, [data-cursor="hover"], input, textarea, select, [role="button"], canvas'
       );
@@ -85,7 +88,7 @@ export default function CustomCursor() {
   return (
     <div
       className={`pointer-events-none fixed inset-0 z-[99999] transition-opacity duration-300 ${
-        visible ? 'opacity-100' : 'opacity-0'
+        visible && !inTorchZone ? 'opacity-100' : 'opacity-0'
       }`}
       aria-hidden="true"
     >

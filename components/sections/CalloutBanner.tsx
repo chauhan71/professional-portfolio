@@ -1,71 +1,263 @@
 'use client';
 
+import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 
-const marqueeItems = ['WILD IDEAS!', 'WILD IDEAS!', "LET'S DIVE IN!"];
+const row1Items = ['WILD IDEAS!', 'WILD IDEAS!', 'WILD IDEAS!', 'WILD IDEAS!'];
+const row2Items = ["LET'S DIVE IN!", "LET'S DIVE IN!", "LET'S DIVE IN!", "LET'S DIVE IN!"];
 
 export default function CalloutBanner() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = section.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      section.style.setProperty('--torch-x', `${x}px`);
+      section.style.setProperty('--torch-y', `${y}px`);
+    };
+
+    section.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => {
+      section.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
   return (
-    <section className="relative overflow-hidden border-y border-white/5 py-20 md:py-28 bg-[#0a0a0a]">
+    <section
+      ref={sectionRef}
+      data-torch-zone="true"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative overflow-hidden border-y border-white/5 py-16 md:py-24 bg-[#0a0a0a] select-none cursor-none"
+    >
       {/* Badge */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="relative z-10 mb-10 text-center"
+        className="relative z-10 mb-8 text-center pointer-events-none"
       >
         <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-xs font-semibold tracking-[0.2em] text-amber-500 uppercase">
           WILD IDEAS!
         </span>
       </motion.div>
 
-      {/* Watermark Marquee (Subtle, Ghosted, and Slow) */}
-      <div className="relative flex overflow-hidden py-4 opacity-35 transition-opacity duration-500 hover:opacity-55 select-none">
-        {/* Track 1 */}
-        <div
-          className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform hover:[animation-play-state:paused]"
-          style={{
-            animation: 'marquee 55s linear infinite',
-          }}
-        >
-          {[...marqueeItems, ...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, i) => (
-            <span
-              key={i}
-              className={`font-display text-6xl font-extrabold tracking-tight md:text-8xl ${
-                i % 3 === 2
-                  ? 'text-amber-500/40'
-                  : 'text-stroke-white opacity-40'
-              }`}
+      {/* Marquee Wrapper with Spotlight Effect */}
+      <div className="relative py-2 overflow-hidden">
+        {/* ============================================================== */}
+        {/* LAYER 1: BASE MUTED TEXT (Faint white outline)                 */}
+        {/* ============================================================== */}
+        <div className="flex flex-col gap-3 md:gap-5 opacity-30 transition-opacity duration-300">
+          {/* Row 1: Moving Left */}
+          <div className="flex overflow-hidden whitespace-nowrap">
+            <div
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform"
+              style={{ animation: 'marquee 45s linear infinite' }}
             >
-              {item}
-              <span className="mx-6 text-white/15">—</span>
-            </span>
-          ))}
+              {[...row1Items, ...row1Items].map((item, i) => (
+                <span
+                  key={`base-1-${i}`}
+                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white"
+                >
+                  {item}
+                  <span className="mx-6 text-white/15">—</span>
+                </span>
+              ))}
+            </div>
+            <div
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform"
+              style={{ animation: 'marquee 45s linear infinite' }}
+              aria-hidden
+            >
+              {[...row1Items, ...row1Items].map((item, i) => (
+                <span
+                  key={`base-1-dup-${i}`}
+                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white"
+                >
+                  {item}
+                  <span className="mx-6 text-white/15">—</span>
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2: Moving Right */}
+          <div className="flex overflow-hidden whitespace-nowrap">
+            <div
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform"
+              style={{ animation: 'marquee-reverse 45s linear infinite' }}
+            >
+              {[...row2Items, ...row2Items].map((item, i) => (
+                <span
+                  key={`base-2-${i}`}
+                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white"
+                >
+                  {item}
+                  <span className="mx-6 text-white/15">—</span>
+                </span>
+              ))}
+            </div>
+            <div
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform"
+              style={{ animation: 'marquee-reverse 45s linear infinite' }}
+              aria-hidden
+            >
+              {[...row2Items, ...row2Items].map((item, i) => (
+                <span
+                  key={`base-2-dup-${i}`}
+                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white"
+                >
+                  {item}
+                  <span className="mx-6 text-white/15">—</span>
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Track 2 (Duplicate for infinite seamless wrap) */}
+        {/* ============================================================== */}
+        {/* LAYER 2: ILLUMINATED GLOWING AMBER TEXT (Masked by Torch)       */}
+        {/* ============================================================== */}
         <div
-          className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform hover:[animation-play-state:paused]"
+          className={`pointer-events-none absolute inset-0 flex flex-col gap-3 md:gap-5 transition-opacity duration-300 ${
+            isHovered ? 'opacity-100' : 'opacity-0'
+          }`}
           style={{
-            animation: 'marquee 55s linear infinite',
+            WebkitMaskImage:
+              'radial-gradient(ellipse 260px 180px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 30px), black 25%, rgba(0,0,0,0.5) 60%, transparent 100%)',
+            maskImage:
+              'radial-gradient(ellipse 260px 180px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 30px), black 25%, rgba(0,0,0,0.5) 60%, transparent 100%)',
           }}
           aria-hidden
         >
-          {[...marqueeItems, ...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, i) => (
-            <span
-              key={`b-${i}`}
-              className={`font-display text-6xl font-extrabold tracking-tight md:text-8xl ${
-                i % 3 === 2
-                  ? 'text-amber-500/40'
-                  : 'text-stroke-white opacity-40'
-              }`}
+          {/* Row 1: Synchronized Moving Left */}
+          <div className="flex overflow-hidden whitespace-nowrap">
+            <div
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform"
+              style={{ animation: 'marquee 45s linear infinite' }}
             >
-              {item}
-              <span className="mx-6 text-white/15">—</span>
-            </span>
-          ))}
+              {[...row1Items, ...row1Items].map((item, i) => (
+                <span
+                  key={`amber-1-${i}`}
+                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber-glow"
+                >
+                  {item}
+                  <span className="mx-6 text-amber-500/30">—</span>
+                </span>
+              ))}
+            </div>
+            <div
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform"
+              style={{ animation: 'marquee 45s linear infinite' }}
+            >
+              {[...row1Items, ...row1Items].map((item, i) => (
+                <span
+                  key={`amber-1-dup-${i}`}
+                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber-glow"
+                >
+                  {item}
+                  <span className="mx-6 text-amber-500/30">—</span>
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2: Synchronized Moving Right */}
+          <div className="flex overflow-hidden whitespace-nowrap">
+            <div
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform"
+              style={{ animation: 'marquee-reverse 45s linear infinite' }}
+            >
+              {[...row2Items, ...row2Items].map((item, i) => (
+                <span
+                  key={`amber-2-${i}`}
+                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber-glow"
+                >
+                  {item}
+                  <span className="mx-6 text-amber-500/30">—</span>
+                </span>
+              ))}
+            </div>
+            <div
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform"
+              style={{ animation: 'marquee-reverse 45s linear infinite' }}
+            >
+              {[...row2Items, ...row2Items].map((item, i) => (
+                <span
+                  key={`amber-2-dup-${i}`}
+                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber-glow"
+                >
+                  {item}
+                  <span className="mx-6 text-amber-500/30">—</span>
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ============================================================== */}
+        {/* LAYER 3: AMBIENT TORCHLIGHT SPOTLIGHT GLOW                     */}
+        {/* ============================================================== */}
+        <div
+          className={`pointer-events-none absolute inset-0 transition-opacity duration-300 ${
+            isHovered ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{
+            background:
+              'radial-gradient(circle 280px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 35px), rgba(245, 158, 11, 0.32) 0%, rgba(217, 119, 6, 0.16) 40%, rgba(245, 158, 11, 0.03) 70%, transparent 100%), radial-gradient(ellipse 360px 220px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 60px), rgba(251, 191, 36, 0.2) 0%, rgba(245, 158, 11, 0.07) 50%, transparent 80%)',
+          }}
+          aria-hidden
+        />
+
+        {/* ============================================================== */}
+        {/* LAYER 4: THE TORCH CURSOR GRAPHIC                              */}
+        {/* ============================================================== */}
+        <div
+          className={`pointer-events-none absolute left-0 top-0 z-40 transition-opacity duration-200 ${
+            isHovered ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{
+            transform:
+              'translate3d(var(--torch-x, -999px), var(--torch-y, -999px), 0) translate(-50%, -50%)',
+            willChange: 'transform',
+          }}
+          aria-hidden
+        >
+          {/* Torch Assembly (Centered horizontally on cursor) */}
+          <div className="relative flex flex-col items-center">
+            {/* 1. Glowing Flame Head (Points Upward) */}
+            <div className="relative z-10 -mb-1 flex items-center justify-center">
+              {/* Flame Outer Halo */}
+              <div className="absolute -inset-3 rounded-full bg-amber-500/30 blur-md animate-pulse pointer-events-none" />
+              {/* Teardrop Flame Body */}
+              <div
+                className="w-4 h-6 rounded-t-full rounded-b-sm bg-gradient-to-t from-amber-500 via-amber-200 to-white"
+                style={{
+                  boxShadow:
+                    '0 0 12px 3px #ffffff, 0 0 24px 8px #f59e0b, 0 -12px 32px 10px rgba(251, 191, 36, 0.65)',
+                }}
+              />
+            </div>
+
+            {/* 2. Metal Collar Bracket */}
+            <div className="z-10 w-3.5 h-1.5 rounded-xs bg-gradient-to-r from-[#d97706] via-[#fef08a] to-[#b45309] shadow-xs" />
+
+            {/* 3. Wooden Torch Handle */}
+            <div className="z-10 w-2.5 h-7 rounded-b-xs bg-gradient-to-b from-[#8B5A2B] via-[#6e411b] to-[#42230c] shadow-[0_2px_8px_rgba(0,0,0,0.8)] border-x border-amber-950/50" />
+
+            {/* 4. Attached Cursor Base Ring with Center Dot */}
+            <div className="relative -mt-1 flex h-8 w-8 items-center justify-center rounded-full border border-white/60 bg-white/[0.04] shadow-[0_0_12px_rgba(255,255,255,0.2)]">
+              <div className="h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_6px_#ffffff]" />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -77,7 +269,7 @@ export default function CalloutBanner() {
         transition={{ delay: 0.2, duration: 0.6 }}
         className="relative z-10 mt-10 text-center"
       >
-        <p className="mx-auto max-w-xl text-sm sm:text-base leading-relaxed text-neutral-400">
+        <p className="mx-auto max-w-xl text-sm sm:text-base leading-relaxed text-neutral-400 pointer-events-auto">
           Like a lion&apos;s roar echoing through the jungle, a hint of our
           creative minds emerges.
         </p>
@@ -85,7 +277,8 @@ export default function CalloutBanner() {
           href="https://dribbble.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="group mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-amber-500 transition-colors hover:text-amber-400"
+          data-cursor="hover"
+          className="group mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-amber-500 transition-colors hover:text-amber-400 pointer-events-auto"
         >
           View Dribbble
           <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
