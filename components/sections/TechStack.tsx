@@ -15,8 +15,8 @@ const stack = [
     badgeColor: 'text-amber-400 border-amber-500/20 bg-amber-500/5',
   },
   {
-    category: 'Backend',
-    tools: ['Node.js', 'Prisma', 'PostgreSQL'],
+    category: 'Mobile App',
+    tools: ['React-native', 'Expo', 'Android', 'IOS'],
     badgeColor: 'text-emerald-400 border-emerald-500/20 bg-emerald-500/5',
   },
   {

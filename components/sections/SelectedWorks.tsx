@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import TiltCard from '@/components/TiltCard';
@@ -12,22 +13,26 @@ const projects = [
     tag: 'Template',
     image:
       'https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=800',
+    link: 'https://uipirate.com/',
+    isExternal: true,
   },
   {
-    title: 'Pro Pirate',
+    title: 'UI Pirate',
     description:
-      'Modern high-converting web apps engineered with Next.js, Tailwind CSS, and Framer Motion.',
-    tag: 'Web Apps',
-    image:
-      'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'A comprehensive, accessible UI system and component library engineered for modern web apps with dark mode and micro-interactions.',
+    tag: 'UI System',
+    image: '/uipirate_ui_system.jpg',
+    link: 'https://uipirate.com/componentlab/tactile-pill-button',
+    isExternal: true,
   },
   {
-    title: 'ArthAlpha',
+    title: 'Camporaone',
     description:
-      'Modern fintech application platform built with Next.js, Tailwind CSS, and Framer Motion.',
-    tag: 'Fintech',
-    image:
-      'https://images.pexels.com/photos/534216/pexels-photo-534216.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'Next-generation smart school management & learning mobile app connecting teachers, students, and parents seamlessly.',
+    tag: 'EdTech App',
+    image: '/evoskool_mobile.jpg',
+    link: '/work#camporaone',
+    isExternal: false,
   },
 ];
 
@@ -66,13 +71,13 @@ export default function SelectedWorks() {
               Selected works, crafted with precision.
             </h2>
           </div>
-          <a
-            href="#work"
+          <Link
+            href="/work"
             className="group flex items-center gap-1.5 text-sm font-medium text-neutral-400 transition-colors hover:text-amber-500"
           >
             Explore work
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </a>
+          </Link>
         </motion.div>
 
         {/* Projects grid */}
@@ -107,13 +112,25 @@ export default function SelectedWorks() {
                   <p className="mt-2 text-sm leading-relaxed text-neutral-400">
                     {project.description}
                   </p>
-                  <a
-                    href="#work"
-                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-amber-500 transition-colors hover:text-amber-400"
-                  >
-                    View project
-                    <ArrowUpRight className="h-4 w-4" />
-                  </a>
+                  {project.isExternal ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-amber-500 transition-colors hover:text-amber-400"
+                    >
+                      View project
+                      <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={project.link}
+                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-amber-500 transition-colors hover:text-amber-400"
+                    >
+                      View project
+                      <ArrowUpRight className="h-4 w-4" />
+                    </Link>
+                  )}
                 </div>
               </TiltCard>
             </motion.div>
@@ -128,13 +145,13 @@ export default function SelectedWorks() {
           transition={{ delay: 0.3 }}
           className="mt-12 text-center"
         >
-          <a
-            href="#work"
+          <Link
+            href="/work"
             className="group inline-flex items-center gap-1.5 text-sm font-medium text-neutral-400 transition-colors hover:text-white"
           >
             View all work
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

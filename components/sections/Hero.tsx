@@ -99,13 +99,13 @@ export default function Hero({ isRevealed = true }: HeroProps) {
           transition={{ delay: 0.85, duration: 0.8 }}
           className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
-          <a
-            href="#work"
+          <Link
+            href="/work"
             className="group flex items-center gap-2 rounded-full border border-neutral-700 bg-neutral-900/50 px-6 py-3 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-amber-500/50 hover:shadow-[0_0_25px_rgba(245,158,11,0.15)]"
           >
             Explore work
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </a>
+          </Link>
           <a
             href="#skills"
             className="rounded-full border border-neutral-800 px-6 py-3 text-sm font-medium text-neutral-300 transition-all hover:border-neutral-600 hover:text-white"

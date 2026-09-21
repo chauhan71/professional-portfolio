@@ -55,7 +55,7 @@ export default function CalloutBanner() {
         {/* ============================================================== */}
         {/* LAYER 1: BASE TEXT (Crisp amber row 1, crisp white row 2)     */}
         {/* ============================================================== */}
-        <div className="flex flex-col gap-4 md:gap-7 opacity-75 md:opacity-85 transition-opacity duration-300">
+        <div className="flex flex-col gap-8 md:gap-20 opacity-75 md:opacity-85 transition-opacity duration-300">
           {/* Row 1: Moving Left in Golden Amber Outline */}
           <div className="flex overflow-hidden whitespace-nowrap">
             <div
@@ -139,9 +139,8 @@ export default function CalloutBanner() {
         {/* LAYER 2: ILLUMINATED GLOWING TEXT (Revealed by Torch)          */}
         {/* ============================================================== */}
         <div
-          className={`pointer-events-none absolute inset-0 flex flex-col gap-4 md:gap-7 transition-opacity duration-300 ${
-            isHovered ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`pointer-events-none absolute inset-0 flex flex-col gap-8 md:gap-20 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'
+            }`}
           style={{
             WebkitMaskImage:
               'radial-gradient(ellipse 280px 200px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 30px), black 30%, rgba(0,0,0,0.5) 60%, transparent 100%)',
@@ -231,9 +230,8 @@ export default function CalloutBanner() {
         {/* LAYER 3: AMBIENT TORCHLIGHT SPOTLIGHT GLOW                     */}
         {/* ============================================================== */}
         <div
-          className={`pointer-events-none absolute inset-0 transition-opacity duration-300 ${
-            isHovered ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`pointer-events-none absolute inset-0 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'
+            }`}
           style={{
             background:
               'radial-gradient(circle 280px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 35px), rgba(245, 158, 11, 0.32) 0%, rgba(217, 119, 6, 0.16) 40%, rgba(245, 158, 11, 0.03) 70%, transparent 100%), radial-gradient(ellipse 360px 220px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 60px), rgba(251, 191, 36, 0.2) 0%, rgba(245, 158, 11, 0.07) 50%, transparent 80%)',
@@ -245,9 +243,8 @@ export default function CalloutBanner() {
         {/* LAYER 4: THE TORCH CURSOR GRAPHIC                              */}
         {/* ============================================================== */}
         <div
-          className={`pointer-events-none absolute left-0 top-0 z-40 transition-opacity duration-200 ${
-            isHovered ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`pointer-events-none absolute left-0 top-0 z-40 transition-opacity duration-200 ${isHovered ? 'opacity-100' : 'opacity-0'
+            }`}
           style={{
             transform:
               'translate3d(var(--torch-x, -999px), var(--torch-y, -999px), 0) translate(-50%, -50%)',
