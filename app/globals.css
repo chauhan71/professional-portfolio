@@ -55,13 +55,16 @@
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: #0a0a0a;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #262626;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #404040;
 }
@@ -74,12 +77,12 @@
 
 /* Utility: text stroke for echo layers */
 .text-stroke-white {
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+  -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.85);
   color: transparent;
 }
 
 .text-stroke-amber {
-  -webkit-text-stroke: 1px rgba(245, 158, 11, 0.4);
+  -webkit-text-stroke: 1.2px #f59e0b;
   color: transparent;
 }
 
@@ -88,6 +91,7 @@
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
@@ -97,6 +101,7 @@
   from {
     transform: translateX(-50%);
   }
+
   to {
     transform: translateX(0);
   }
@@ -112,11 +117,37 @@
   text-shadow: 0 0 25px rgba(245, 158, 11, 0.8), 0 0 45px rgba(217, 119, 6, 0.4);
 }
 
+/* Watermark horizontal scanline slatted blinds texture */
+.watermark-scanlines {
+  background-image: repeating-linear-gradient(to bottom,
+      currentColor 0px,
+      currentColor 3.5px,
+      transparent 3.5px,
+      transparent 8px);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes float-y {
+
+  0%,
+  100% {
+    transform: translateY(-26px);
+  }
+
+  50% {
+    transform: translateY(26px);
+  }
+}
+
 /* Glow pulse for buttons */
 @keyframes glow-pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(245, 158, 11, 0.5);
   }

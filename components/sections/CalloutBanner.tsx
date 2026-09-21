@@ -35,7 +35,7 @@ export default function CalloutBanner() {
       data-torch-zone="true"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative overflow-hidden border-y border-white/5 py-16 md:py-24 bg-[#0a0a0a] select-none cursor-none"
+      className="group relative overflow-hidden border-y border-white/5 py-16 md:py-24 bg-[#0a0a0a] select-none cursor-none"
     >
       {/* Badge */}
       <motion.div
@@ -53,47 +53,56 @@ export default function CalloutBanner() {
       {/* Marquee Wrapper with Spotlight Effect */}
       <div className="relative py-2 overflow-hidden">
         {/* ============================================================== */}
-        {/* LAYER 1: BASE MUTED TEXT (Faint white outline)                 */}
+        {/* LAYER 1: BASE TEXT (Crisp amber row 1, crisp white row 2)     */}
         {/* ============================================================== */}
-        <div className="flex flex-col gap-3 md:gap-5 opacity-30 transition-opacity duration-300">
-          {/* Row 1: Moving Left */}
+        <div className="flex flex-col gap-4 md:gap-7 opacity-75 md:opacity-85 transition-opacity duration-300">
+          {/* Row 1: Moving Left in Golden Amber Outline */}
           <div className="flex overflow-hidden whitespace-nowrap">
             <div
-              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform"
-              style={{ animation: 'marquee 45s linear infinite' }}
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform group-hover:[animation-play-state:paused]"
+              style={{
+                animation: 'marquee 45s linear infinite',
+                animationPlayState: isHovered ? 'paused' : 'running',
+              }}
             >
               {[...row1Items, ...row1Items].map((item, i) => (
                 <span
                   key={`base-1-${i}`}
-                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white"
+                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber"
                 >
                   {item}
-                  <span className="mx-6 text-white/15">—</span>
+                  <span className="inline-block w-12 sm:w-16 md:w-24 h-2 sm:h-3 md:h-3.5 mx-6 border-2 border-amber-500 rounded-xs align-middle" />
                 </span>
               ))}
             </div>
             <div
-              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform"
-              style={{ animation: 'marquee 45s linear infinite' }}
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform group-hover:[animation-play-state:paused]"
+              style={{
+                animation: 'marquee 45s linear infinite',
+                animationPlayState: isHovered ? 'paused' : 'running',
+              }}
               aria-hidden
             >
               {[...row1Items, ...row1Items].map((item, i) => (
                 <span
                   key={`base-1-dup-${i}`}
-                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white"
+                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber"
                 >
                   {item}
-                  <span className="mx-6 text-white/15">—</span>
+                  <span className="inline-block w-12 sm:w-16 md:w-24 h-2 sm:h-3 md:h-3.5 mx-6 border-2 border-amber-500 rounded-xs align-middle" />
                 </span>
               ))}
             </div>
           </div>
 
-          {/* Row 2: Moving Right */}
+          {/* Row 2: Moving Right in Crisp White Outline */}
           <div className="flex overflow-hidden whitespace-nowrap">
             <div
-              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform"
-              style={{ animation: 'marquee-reverse 45s linear infinite' }}
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform group-hover:[animation-play-state:paused]"
+              style={{
+                animation: 'marquee-reverse 45s linear infinite',
+                animationPlayState: isHovered ? 'paused' : 'running',
+              }}
             >
               {[...row2Items, ...row2Items].map((item, i) => (
                 <span
@@ -101,13 +110,16 @@ export default function CalloutBanner() {
                   className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white"
                 >
                   {item}
-                  <span className="mx-6 text-white/15">—</span>
+                  <span className="inline-block w-12 sm:w-16 md:w-24 h-2 sm:h-3 md:h-3.5 mx-6 border-2 border-white/85 rounded-xs align-middle" />
                 </span>
               ))}
             </div>
             <div
-              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform"
-              style={{ animation: 'marquee-reverse 45s linear infinite' }}
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform group-hover:[animation-play-state:paused]"
+              style={{
+                animation: 'marquee-reverse 45s linear infinite',
+                animationPlayState: isHovered ? 'paused' : 'running',
+              }}
               aria-hidden
             >
               {[...row2Items, ...row2Items].map((item, i) => (
@@ -116,7 +128,7 @@ export default function CalloutBanner() {
                   className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white"
                 >
                   {item}
-                  <span className="mx-6 text-white/15">—</span>
+                  <span className="inline-block w-12 sm:w-16 md:w-24 h-2 sm:h-3 md:h-3.5 mx-6 border-2 border-white/85 rounded-xs align-middle" />
                 </span>
               ))}
             </div>
@@ -124,79 +136,91 @@ export default function CalloutBanner() {
         </div>
 
         {/* ============================================================== */}
-        {/* LAYER 2: ILLUMINATED GLOWING AMBER TEXT (Masked by Torch)       */}
+        {/* LAYER 2: ILLUMINATED GLOWING TEXT (Revealed by Torch)          */}
         {/* ============================================================== */}
         <div
-          className={`pointer-events-none absolute inset-0 flex flex-col gap-3 md:gap-5 transition-opacity duration-300 ${
+          className={`pointer-events-none absolute inset-0 flex flex-col gap-4 md:gap-7 transition-opacity duration-300 ${
             isHovered ? 'opacity-100' : 'opacity-0'
           }`}
           style={{
             WebkitMaskImage:
-              'radial-gradient(ellipse 260px 180px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 30px), black 25%, rgba(0,0,0,0.5) 60%, transparent 100%)',
+              'radial-gradient(ellipse 280px 200px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 30px), black 30%, rgba(0,0,0,0.5) 60%, transparent 100%)',
             maskImage:
-              'radial-gradient(ellipse 260px 180px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 30px), black 25%, rgba(0,0,0,0.5) 60%, transparent 100%)',
+              'radial-gradient(ellipse 280px 200px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 30px), black 30%, rgba(0,0,0,0.5) 60%, transparent 100%)',
           }}
           aria-hidden
         >
-          {/* Row 1: Synchronized Moving Left */}
+          {/* Row 1: Golden Amber with Intense Warm Glow */}
           <div className="flex overflow-hidden whitespace-nowrap">
             <div
-              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform"
-              style={{ animation: 'marquee 45s linear infinite' }}
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform group-hover:[animation-play-state:paused]"
+              style={{
+                animation: 'marquee 45s linear infinite',
+                animationPlayState: isHovered ? 'paused' : 'running',
+              }}
             >
               {[...row1Items, ...row1Items].map((item, i) => (
                 <span
                   key={`amber-1-${i}`}
-                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber-glow"
+                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber filter drop-shadow-[0_0_20px_rgba(245,158,11,0.95)]"
                 >
                   {item}
-                  <span className="mx-6 text-amber-500/30">—</span>
+                  <span className="inline-block w-12 sm:w-16 md:w-24 h-2 sm:h-3 md:h-3.5 mx-6 border-2 border-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.9)] rounded-xs align-middle" />
                 </span>
               ))}
             </div>
             <div
-              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform"
-              style={{ animation: 'marquee 45s linear infinite' }}
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform group-hover:[animation-play-state:paused]"
+              style={{
+                animation: 'marquee 45s linear infinite',
+                animationPlayState: isHovered ? 'paused' : 'running',
+              }}
             >
               {[...row1Items, ...row1Items].map((item, i) => (
                 <span
                   key={`amber-1-dup-${i}`}
-                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber-glow"
+                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber filter drop-shadow-[0_0_20px_rgba(245,158,11,0.95)]"
                 >
                   {item}
-                  <span className="mx-6 text-amber-500/30">—</span>
+                  <span className="inline-block w-12 sm:w-16 md:w-24 h-2 sm:h-3 md:h-3.5 mx-6 border-2 border-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.9)] rounded-xs align-middle" />
                 </span>
               ))}
             </div>
           </div>
 
-          {/* Row 2: Synchronized Moving Right */}
+          {/* Row 2: Pure White with Intense Clean Glow */}
           <div className="flex overflow-hidden whitespace-nowrap">
             <div
-              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform"
-              style={{ animation: 'marquee-reverse 45s linear infinite' }}
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform group-hover:[animation-play-state:paused]"
+              style={{
+                animation: 'marquee-reverse 45s linear infinite',
+                animationPlayState: isHovered ? 'paused' : 'running',
+              }}
             >
               {[...row2Items, ...row2Items].map((item, i) => (
                 <span
                   key={`amber-2-${i}`}
-                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber-glow"
+                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white filter drop-shadow-[0_0_20px_rgba(255,255,255,0.95)]"
                 >
                   {item}
-                  <span className="mx-6 text-amber-500/30">—</span>
+                  <span className="inline-block w-12 sm:w-16 md:w-24 h-2 sm:h-3 md:h-3.5 mx-6 border-2 border-white shadow-[0_0_12px_rgba(255,255,255,0.9)] rounded-xs align-middle" />
                 </span>
               ))}
             </div>
             <div
-              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform"
-              style={{ animation: 'marquee-reverse 45s linear infinite' }}
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform group-hover:[animation-play-state:paused]"
+              style={{
+                animation: 'marquee-reverse 45s linear infinite',
+                animationPlayState: isHovered ? 'paused' : 'running',
+              }}
             >
               {[...row2Items, ...row2Items].map((item, i) => (
                 <span
                   key={`amber-2-dup-${i}`}
-                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber-glow"
+                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white filter drop-shadow-[0_0_20px_rgba(255,255,255,0.95)]"
                 >
                   {item}
-                  <span className="mx-6 text-amber-500/30">—</span>
+                  <span className="inline-block w-12 sm:w-16 md:w-24 h-2 sm:h-3 md:h-3.5 mx-6 border-2 border-white shadow-[0_0_12px_rgba(255,255,255,0.9)] rounded-xs align-middle" />
                 </span>
               ))}
             </div>

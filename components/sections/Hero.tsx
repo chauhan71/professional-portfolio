@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
@@ -111,13 +112,13 @@ export default function Hero({ isRevealed = true }: HeroProps) {
           >
             Services
           </a>
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             className="group flex items-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-neutral-950 transition-all hover:bg-amber-400 hover:shadow-[0_0_30px_rgba(245,158,11,0.4)]"
           >
             Get in touch
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
+          </Link>
         </motion.div>
       </motion.div>
 
