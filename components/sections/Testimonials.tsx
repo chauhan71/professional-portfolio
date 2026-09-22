@@ -36,10 +36,12 @@ export default function Testimonials() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [bounds, setBounds] = useState({ startX: -260, endX: 20 });
   const [isPaused, setIsPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const calcBounds = () => {
       if (!containerRef.current) return;
+      setIsMobile(window.innerWidth < 768);
       const containerW = containerRef.current.offsetWidth;
       // 5 cards of w-[420px] on desktop / w-[360px] on mobile + 24px gap
       const cardWidth = window.innerWidth < 640 ? 320 : window.innerWidth < 1024 ? 380 : 420;
@@ -114,7 +116,7 @@ export default function Testimonials() {
           style={{
             ['--start-x' as any]: `${bounds.startX}px`,
             ['--end-x' as any]: `${bounds.endX}px`,
-            animation: 'pingPongMotion 38s ease-in-out infinite alternate',
+            animation: `pingPongMotion ${isMobile ? '38s' : '14s'} ease-in-out infinite alternate`,
             animationPlayState: isPaused ? 'paused' : 'running',
           }}
         >

@@ -92,9 +92,9 @@ export default function TechStack() {
               }}
               transition={{
                 type: 'spring',
-                stiffness: 260,
-                damping: 24,
-                mass: 0.8,
+                stiffness: 480,
+                damping: 30,
+                mass: 0.4,
               }}
             >
               {/* Subtle interior lining stitch */}
@@ -154,9 +154,9 @@ export default function TechStack() {
                   }}
                   transition={{
                     type: 'spring',
-                    stiffness: 270,
-                    damping: 24,
-                    mass: 0.8,
+                    stiffness: 480,
+                    damping: 30,
+                    mass: 0.4,
                   }}
                   onClick={(e) => {
                     if (isMobile && isOpen) {
@@ -207,9 +207,9 @@ export default function TechStack() {
               }}
               transition={{
                 type: 'spring',
-                stiffness: 260,
-                damping: 24,
-                mass: 0.8,
+                stiffness: 480,
+                damping: 30,
+                mass: 0.4,
               }}
             >
               {/* SVG Front Pocket with smooth curved thumb cutout matching reference */}
