@@ -28,12 +28,15 @@ export default function Footer() {
 
   return (
     <footer id="contact" className="relative overflow-hidden px-6 pt-24 md:px-8 md:pt-32 bg-[#0a0a0a]">
-      <div className="relative z-10 mx-auto max-w-7xl">
-        {/* CTA */}
+      <div className="relative z-10 mx-auto max-w-5xl">
+        {/* Top "Let's talk" pill button (Matches Image 1) */}
+
+
+        {/* CTA (Matches Image 2) */}
         <motion.div
-          initial={{ opacity: 0, y: 35, filter: 'blur(6px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: true, margin: '-80px' }}
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center"
         >
@@ -42,50 +45,75 @@ export default function Footer() {
           </span>
 
           {/* Clean Crisp Heading */}
-          <h2 className="mt-5 font-sans text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-white max-w-3xl mx-auto leading-tight">
-            Ready to bring your ideas to life?
+          <h2 className="mt-5 font-sans text-3xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-tight sm:leading-[1.05]">
+            Ready to bring your ideas<br className="hidden sm:inline" /> to life?
           </h2>
 
-          <p className="mx-auto mt-6 max-w-xl text-base text-neutral-400">
-            I&apos;m currently available for freelance projects and full-time
-            opportunities. Let&apos;s talk about your next project!
+          <p className="mx-auto mt-6 max-w-2xl text-sm sm:text-base text-neutral-400 leading-relaxed">
+            I&apos;m currently available for freelance projects and full-time opportunities.
+            <br className="hidden sm:inline" />
+            Let&apos;s talk about your next project!
           </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex justify-center mb-5 mt-5"
+        >
+          <a
+            href="mailto:ritikchauhan@gmail.com"
+            className="group inline-flex items-center px-8 py-3 rounded-full bg-white text-black font-semibold text-sm sm:text-base shadow-[0_0_25px_rgba(255,255,255,0.15)] transition-all duration-300 hover:bg-amber-400 hover:scale-105 hover:shadow-[0_0_35px_rgba(251,191,36,0.7)] active:scale-95 select-none cursor-pointer"
+          >
+            Let&apos;s talk
+          </a>
         </motion.div>
 
         {/* Contact pill card */}
         <motion.div
-          initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mt-12 max-w-2xl rounded-2xl border border-neutral-800 bg-neutral-900/60 p-6 backdrop-blur-md md:p-8"
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto mt-12 max-w-3xl rounded-[28px] border border-white/10 bg-[#111111]/90 p-8 md:p-10 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
         >
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
             <a
               href="mailto:ritikchauhan@gmail.com"
-              className="group flex flex-col items-center gap-2 text-center"
+              className="group flex flex-col items-center text-center"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full border border-neutral-700 bg-neutral-800/60 transition-colors group-hover:border-amber-500/40 group-hover:bg-amber-500/10">
-                <Mail className="h-5 w-5 text-amber-500" />
+              <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] transition-all duration-300 group-hover:border-amber-500/50 group-hover:bg-amber-500/10 group-hover:scale-105">
+                <Mail className="h-6 w-6 text-amber-500" />
               </div>
-              <span className="text-xs text-neutral-500">Email</span>
-              <span className="text-sm font-medium text-white">ritikchauhan@gmail.com</span>
+              <span className="text-xs text-neutral-400 font-medium mt-3">Email</span>
+              <span className="text-sm sm:text-base font-semibold text-white mt-1 group-hover:text-amber-400 transition-colors break-all sm:break-normal">
+                ritikchauhan@gmail.com
+              </span>
             </a>
 
-            <div className="flex flex-col items-center gap-2 text-center">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full border border-neutral-700 bg-neutral-800/60">
-                <Linkedin className="h-5 w-5 text-amber-500" />
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center text-center"
+            >
+              <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] transition-all duration-300 group-hover:border-amber-500/50 group-hover:bg-amber-500/10 group-hover:scale-105">
+                <Linkedin className="h-6 w-6 text-amber-500" />
               </div>
-              <span className="text-xs text-neutral-500">LinkedIn</span>
-              <span className="text-sm font-medium text-white">Ritik Chauhan</span>
-            </div>
+              <span className="text-xs text-neutral-400 font-medium mt-3">LinkedIn</span>
+              <span className="text-sm sm:text-base font-semibold text-white mt-1 group-hover:text-amber-400 transition-colors">
+                Ritik Chauhan
+              </span>
+            </a>
 
-            <div className="flex flex-col items-center gap-2 text-center">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full border border-neutral-700 bg-neutral-800/60">
-                <MapPin className="h-5 w-5 text-amber-500" />
+            <div className="flex flex-col items-center text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/[0.03]">
+                <MapPin className="h-6 w-6 text-amber-500" />
               </div>
-              <span className="text-xs text-neutral-500">Location</span>
-              <span className="text-sm font-medium text-white">India</span>
+              <span className="text-xs text-neutral-400 font-medium mt-3">Location</span>
+              <span className="text-sm sm:text-base font-semibold text-white mt-1">India</span>
             </div>
           </div>
         </motion.div>
@@ -96,19 +124,21 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="mt-10 flex items-center justify-center gap-4"
+          className="mt-12 flex items-center justify-center gap-4"
         >
           {[
-            { icon: Github, label: 'GitHub' },
-            { icon: Twitter, label: 'Twitter' },
-            { icon: Linkedin, label: 'LinkedIn' },
-            { icon: Instagram, label: 'Instagram' },
-          ].map(({ icon: Icon, label }) => (
+            { icon: Github, label: 'GitHub', href: 'https://github.com' },
+            { icon: Twitter, label: 'Twitter', href: 'https://twitter.com' },
+            { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com' },
+            { icon: Instagram, label: 'Instagram', href: 'https://instagram.com' },
+          ].map(({ icon: Icon, label, href }) => (
             <a
               key={label}
-              href="#"
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={label}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-neutral-800 bg-neutral-900/60 text-neutral-400 transition-all hover:border-amber-500/40 hover:text-amber-500 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)]"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-neutral-400 transition-all hover:border-amber-500/40 hover:text-white hover:bg-white/[0.08] hover:shadow-[0_0_20px_rgba(245,158,11,0.2)] hover:scale-105"
             >
               <Icon className="h-5 w-5" />
             </a>
@@ -124,7 +154,7 @@ export default function Footer() {
         data-torch-zone="true"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="relative mt-8 md:mt-12 min-h-[300px] sm:min-h-[360px] md:min-h-[440px] flex items-center justify-center overflow-hidden cursor-none select-none"
+        className="relative mt-8 md:mt-12 min-h-[300px] sm:min-h-[360px] md:min-h-[440px] flex items-center justify-center overflow-hidden md:cursor-none select-none"
       >
         {/* Up & Down Motion (Dynamic & Lively) */}
         <div
@@ -233,7 +263,7 @@ export default function Footer() {
           </a>
           <span className="text-neutral-700">|</span>
           <a href="tel:+910000000000" className="transition-colors hover:text-amber-500">
-            +91 000 000 0000
+            +91 6202923295
           </a>
         </div>
       </div>

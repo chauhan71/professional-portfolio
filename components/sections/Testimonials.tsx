@@ -61,7 +61,8 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section id="testimonials" className="relative px-0 py-24 md:py-32 overflow-hidden">
+    <section id="reviews" className="relative px-0 py-24 md:py-32 overflow-hidden">
+      <div id="testimonials" className="absolute -top-24" />
       <style jsx>{`
         @keyframes pingPongMotion {
           0% {
@@ -86,14 +87,11 @@ export default function Testimonials() {
           className="mb-14 text-center md:text-left"
         >
           <span className="text-xs font-semibold tracking-[0.2em] text-amber-500 uppercase">
-            PARTNER LOVE
+            REVIEWS
           </span>
           <h2 className="mt-3 max-w-3xl font-display text-4xl font-bold tracking-tight text-white md:text-5xl">
             Take heed, as the lion&apos;s roar in my client reviews resounds.
           </h2>
-          <p className="mt-2 text-xs tracking-[0.2em] uppercase text-neutral-500 font-mono select-none">
-            Hover over any review to pause the motion
-          </p>
         </motion.div>
       </div>
 
@@ -111,17 +109,19 @@ export default function Testimonials() {
           className="ping-pong-track flex w-max flex-nowrap gap-6 will-change-transform"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
           style={{
             ['--start-x' as any]: `${bounds.startX}px`,
             ['--end-x' as any]: `${bounds.endX}px`,
-            animation: 'pingPongMotion 14s ease-in-out infinite alternate',
+            animation: 'pingPongMotion 38s ease-in-out infinite alternate',
             animationPlayState: isPaused ? 'paused' : 'running',
           }}
         >
           {testimonials.map((t) => (
             <div
               key={t.name}
-              className="group relative w-80 sm:w-[380px] md:w-[420px] min-h-[270px] flex flex-col justify-between shrink-0 rounded-2xl border border-white/10 bg-[#111111] p-6 sm:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-amber-500/40 hover:bg-[#161616] hover:shadow-[0_15px_35px_rgba(245,158,11,0.12)] select-none"
+              className="group relative w-[290px] sm:w-[380px] md:w-[420px] min-h-[270px] flex flex-col justify-between shrink-0 rounded-2xl border border-white/10 bg-[#111111] p-6 sm:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-amber-500/40 hover:bg-[#161616] hover:shadow-[0_15px_35px_rgba(245,158,11,0.12)] select-none"
             >
               {/* Card Top: Clean Quote Pill without stars */}
               <div className="flex items-center justify-between">

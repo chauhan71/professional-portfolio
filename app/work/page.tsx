@@ -160,7 +160,12 @@ export default function WorkPage() {
       <CustomCursor />
       <Navbar isRevealed={true} />
 
-      <main className="min-h-screen bg-[#080808] text-white pt-32 pb-24 px-6 md:px-12 selection:bg-amber-500/20 selection:text-amber-300">
+      {/* Fixed Ambient Orange Lighting Background */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute -top-[10%] -left-[10%] w-[70vw] h-[70vw] max-w-[950px] max-h-[950px] bg-gradient-to-br from-amber-500/40 via-orange-600/25 to-transparent rounded-full blur-[130px]" />
+      </div>
+
+      <main className="relative z-10 min-h-screen bg-[#080808]/90 text-white pt-32 pb-24 px-6 md:px-12 selection:bg-amber-500/20 selection:text-amber-300">
         {/* ============================================================== */}
         {/* HERO SECTION                                                  */}
         {/* ============================================================== */}

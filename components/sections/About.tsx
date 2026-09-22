@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
@@ -111,13 +112,13 @@ export default function About() {
               and interaction, I bridge the gap between design and code to bring
               wild ideas to life.
             </p>
-            <a
-              href="#about"
+            <Link
+              href="/about"
               className="group mt-8 inline-flex items-center gap-2 rounded-full border border-neutral-700 px-5 py-2.5 text-sm font-medium text-white transition-all hover:border-amber-500/50 hover:shadow-[0_0_25px_rgba(245,158,11,0.15)]"
             >
               About me
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
+            </Link>
           </motion.div>
 
           {/* Right column: metrics bento */}
@@ -132,13 +133,13 @@ export default function About() {
               <motion.div
                 key={m.label}
                 variants={item}
-                className={`group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6 transition-colors hover:border-amber-500/30 ${
+                className={`group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4 sm:p-6 transition-colors hover:border-amber-500/30 ${
                   i === 0 ? 'md:translate-y-0' : ''
                 } ${i === 1 ? 'md:translate-y-8' : ''} ${i === 2 ? 'md:-translate-y-4' : ''} ${i === 3 ? 'md:translate-y-4' : ''}`}
               >
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-amber-500/0 to-amber-500/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:from-amber-500/5 group-hover:to-transparent" />
                 <div className="relative">
-                  <p className="font-display text-4xl font-bold text-white md:text-5xl">
+                  <p className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white">
                     <StatCounter
                       target={m.target}
                       suffix={m.suffix}

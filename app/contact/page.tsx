@@ -1,246 +1,125 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import CustomCursor from '@/components/CustomCursor';
 import Navbar from '@/components/Navbar';
-import { Mail, Linkedin, Phone, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import Footer from '@/components/sections/Footer';
+import { Mail, Linkedin, MapPin, Github, Twitter, Instagram } from 'lucide-react';
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const text = encodeURIComponent(
-      `*New Portfolio Inquiry*\n\n` +
-      `*Name:* ${formData.name}\n` +
-      `*Email:* ${formData.email}\n` +
-      `*Subject:* ${formData.subject || 'General Inquiry'}\n\n` +
-      `*Message:*\n${formData.message}`
-    );
-
-    // Open WhatsApp directly to your number +91 6202923295
-    window.open(`https://wa.me/916202923295?text=${text}`, '_blank');
-
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 4000);
-  };
-
   return (
     <>
       <CustomCursor />
       <Navbar isRevealed={true} />
 
-      <main className="min-h-screen bg-[#080808] text-white pt-32 pb-20 px-6 md:px-12 flex items-center">
-        <div className="mx-auto max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* ============================================================== */}
-          {/* LEFT COLUMN: HERO HEADINGS & CONTACT CARDS                     */}
-          {/* ============================================================== */}
+      {/* Fixed Ambient Lighting */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[10%] left-[50%] -translate-x-1/2 w-[650px] h-[450px] bg-gradient-to-b from-amber-500/15 via-orange-600/5 to-transparent rounded-full blur-[130px]" />
+      </div>
+
+      <main className="relative z-10 min-h-[90vh] bg-[#080808] text-white pt-36 sm:pt-44 pb-24 px-6 md:px-12 flex flex-col items-center justify-center">
+        <div className="mx-auto max-w-4xl w-full text-center">
+          {/* Subtitle */}
           <motion.div
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6 flex flex-col justify-between"
           >
-            <div>
-              {/* Badge */}
-              <span className="text-xs font-semibold tracking-[0.25em] text-amber-500 uppercase font-mono">
-                GET IN TOUCH
-              </span>
+            <span className="text-xs font-semibold tracking-[0.25em] uppercase text-amber-500 font-mono">
+              LET&apos;S BUILD SOMETHING TOGETHER
+            </span>
 
-              {/* Main Headline */}
-              <h1 className="mt-4 font-sans text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.08]">
-                Time to roar!
-              </h1>
-              <h2 className="mt-2 font-sans text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-neutral-400 leading-[1.12]">
-                Let&apos;s create something extraordinary together.
-              </h2>
+            {/* Main Headline */}
+            <h1 className="mt-5 font-sans text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.05]">
+              Ready to bring your ideas<br className="hidden sm:inline" /> to life?
+            </h1>
 
-              {/* Subtext */}
-              <p className="mt-6 text-sm sm:text-base leading-relaxed text-neutral-400 max-w-lg">
-                I&apos;m currently available for freelance projects and full-time
-                opportunities. Reach out and let&apos;s discuss how I can help your
-                project thrive in the digital wilderness.
-              </p>
-            </div>
+            {/* Subtext */}
+            <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-neutral-400 leading-relaxed">
+              I&apos;m currently available for freelance projects and full-time opportunities.
+              <br className="hidden sm:inline" />
+              Let&apos;s talk about your next project!
+            </p>
+          </motion.div>
 
-            {/* Vertical Stack Contact Cards */}
-            <div className="mt-10 flex flex-col gap-3.5 max-w-md">
-              {/* 1. Email Card */}
+          {/* Contact 3-Column Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="mx-auto mt-12 w-full rounded-[28px] border border-white/10 bg-[#111111]/90 p-8 md:p-10 backdrop-blur-xl shadow-[0_25px_70px_rgba(0,0,0,0.7)]"
+          >
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+              {/* Email */}
               <a
-                href="mailto:chouhanritik80@gmail.com"
-                className="group flex items-center gap-4 rounded-2xl border border-white/5 bg-[#121212] p-4 transition-all duration-300 hover:border-amber-500/40 hover:bg-[#181818]"
+                href="mailto:ritikchauhan@gmail.com"
+                className="group flex flex-col items-center text-center"
               >
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-neutral-800/70 text-amber-400 transition-colors group-hover:bg-amber-500/15">
-                  <Mail className="h-5 w-5" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] transition-all duration-300 group-hover:border-amber-500/50 group-hover:bg-amber-500/10 group-hover:scale-105">
+                  <Mail className="h-6 w-6 text-amber-500" />
                 </div>
-                <div className="flex flex-col min-w-0">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 font-semibold">
-                    EMAIL
-                  </span>
-                  <span className="truncate text-sm font-semibold text-white group-hover:text-amber-300 transition-colors">
-                    chouhanritik80@gmail.com
-                  </span>
-                </div>
+                <span className="text-xs text-neutral-400 font-medium mt-3">Email</span>
+                <span className="text-sm sm:text-base font-semibold text-white mt-1 group-hover:text-amber-400 transition-colors">
+                  ritikchauhan@gmail.com
+                </span>
               </a>
 
-              {/* 2. LinkedIn Card */}
+              {/* LinkedIn */}
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 rounded-2xl border border-white/5 bg-[#121212] p-4 transition-all duration-300 hover:border-amber-500/40 hover:bg-[#181818]"
+                className="group flex flex-col items-center text-center"
               >
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-neutral-800/70 text-amber-400 transition-colors group-hover:bg-amber-500/15">
-                  <Linkedin className="h-5 w-5" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] transition-all duration-300 group-hover:border-amber-500/50 group-hover:bg-amber-500/10 group-hover:scale-105">
+                  <Linkedin className="h-6 w-6 text-amber-500" />
                 </div>
-                <div className="flex flex-col min-w-0">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 font-semibold">
-                    LINKEDIN
-                  </span>
-                  <span className="truncate text-sm font-semibold text-white group-hover:text-amber-300 transition-colors">
-                    Ritik Chauhan
-                  </span>
-                </div>
+                <span className="text-xs text-neutral-400 font-medium mt-3">LinkedIn</span>
+                <span className="text-sm sm:text-base font-semibold text-white mt-1 group-hover:text-amber-400 transition-colors">
+                  Ritik Chauhan
+                </span>
               </a>
 
-              {/* 3. Phone Card */}
-              <a
-                href="tel:+916202923295"
-                className="group flex items-center gap-4 rounded-2xl border border-white/5 bg-[#121212] p-4 transition-all duration-300 hover:border-amber-500/40 hover:bg-[#181818]"
-              >
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-neutral-800/70 text-amber-400 transition-colors group-hover:bg-amber-500/15">
-                  <Phone className="h-5 w-5" />
+              {/* Location */}
+              <div className="flex flex-col items-center text-center">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/[0.03]">
+                  <MapPin className="h-6 w-6 text-amber-500" />
                 </div>
-                <div className="flex flex-col min-w-0">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 font-semibold">
-                    PHONE
-                  </span>
-                  <span className="truncate text-sm font-semibold text-white group-hover:text-amber-300 transition-colors">
-                    +91 6202923295
-                  </span>
-                </div>
-              </a>
+                <span className="text-xs text-neutral-400 font-medium mt-3">Location</span>
+                <span className="text-sm sm:text-base font-semibold text-white mt-1">India</span>
+              </div>
             </div>
           </motion.div>
 
-          {/* ============================================================== */}
-          {/* RIGHT COLUMN: INTERACTIVE MESSAGE FORM                         */}
-          {/* ============================================================== */}
+          {/* Social Icons Row */}
           <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="mt-12 flex items-center justify-center gap-4"
           >
-            <div className="rounded-3xl border border-white/10 bg-[#121212] p-7 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-xl">
-              <h3 className="text-2xl font-bold tracking-wide text-white mb-8">
-                Send me a message
-              </h3>
-
-              {submitted ? (
-                <div className="py-12 text-center flex flex-col items-center justify-center">
-                  <CheckCircle2 className="h-14 w-14 text-amber-400 mb-4 animate-bounce" />
-                  <h4 className="text-xl font-bold text-white">Message Sent!</h4>
-                  <p className="text-sm text-neutral-400 mt-2 max-w-sm">
-                    Thank you for reaching out, Ritik will get back to you shortly.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                  {/* Row 1: Name + Email */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div className="flex flex-col gap-2">
-                      <label className="text-[10px] font-mono font-semibold tracking-widest uppercase text-neutral-400">
-                        FULL NAME
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Full name"
-                        value={formData.name}
-                        onChange={(e) =>
-                          setFormData({ ...formData, name: e.target.value })
-                        }
-                        className="w-full rounded-xl border border-white/5 bg-[#1a1a1a] px-4 py-3.5 text-sm text-white placeholder-neutral-600 transition-colors focus:border-amber-500/50 focus:outline-none focus:ring-1 focus:ring-amber-500/30"
-                      />
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                      <label className="text-[10px] font-mono font-semibold tracking-widest uppercase text-neutral-400">
-                        EMAIL ADDRESS
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="example@email.com"
-                        value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
-                        className="w-full rounded-xl border border-white/5 bg-[#1a1a1a] px-4 py-3.5 text-sm text-white placeholder-neutral-600 transition-colors focus:border-amber-500/50 focus:outline-none focus:ring-1 focus:ring-amber-500/30"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Row 2: Subject */}
-                  <div className="flex flex-col gap-2">
-                    <label className="text-[10px] font-mono font-semibold tracking-widest uppercase text-neutral-400">
-                      SUBJECT
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Project Inquiry"
-                      value={formData.subject}
-                      onChange={(e) =>
-                        setFormData({ ...formData, subject: e.target.value })
-                      }
-                      className="w-full rounded-xl border border-white/5 bg-[#1a1a1a] px-4 py-3.5 text-sm text-white placeholder-neutral-600 transition-colors focus:border-amber-500/50 focus:outline-none focus:ring-1 focus:ring-amber-500/30"
-                    />
-                  </div>
-
-                  {/* Row 3: Message */}
-                  <div className="flex flex-col gap-2">
-                    <label className="text-[10px] font-mono font-semibold tracking-widest uppercase text-neutral-400">
-                      MESSAGE
-                    </label>
-                    <textarea
-                      required
-                      rows={5}
-                      placeholder="Tell me about your project..."
-                      value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                      className="w-full resize-none rounded-xl border border-white/5 bg-[#1a1a1a] px-4 py-3.5 text-sm text-white placeholder-neutral-600 transition-colors focus:border-amber-500/50 focus:outline-none focus:ring-1 focus:ring-amber-500/30"
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    className="w-full mt-2 rounded-full bg-amber-500 py-4 text-center text-xs font-bold uppercase tracking-widest text-neutral-950 transition-all duration-300 hover:bg-amber-400 hover:shadow-[0_0_30px_rgba(245,158,11,0.4)]"
-                  >
-                    SEND MESSAGE
-                  </button>
-                </form>
-              )}
-            </div>
+            {[
+              { icon: Github, label: 'GitHub', href: 'https://github.com' },
+              { icon: Twitter, label: 'Twitter', href: 'https://twitter.com' },
+              { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com' },
+              { icon: Instagram, label: 'Instagram', href: 'https://instagram.com' },
+            ].map(({ icon: Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-neutral-400 transition-all hover:border-amber-500/40 hover:text-white hover:bg-white/[0.08] hover:shadow-[0_0_20px_rgba(245,158,11,0.2)] hover:scale-105"
+              >
+                <Icon className="h-5 w-5" />
+              </a>
+            ))}
           </motion.div>
         </div>
       </main>
+
+      <Footer />
     </>
   );
 }

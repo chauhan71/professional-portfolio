@@ -87,7 +87,7 @@ export default function CustomCursor() {
 
   return (
     <div
-      className={`pointer-events-none fixed inset-0 z-[99999] transition-opacity duration-300 ${
+      className={`pointer-events-none fixed inset-0 z-[99999] transition-opacity duration-300 hidden md:block ${
         visible && !inTorchZone ? 'opacity-100' : 'opacity-0'
       }`}
       aria-hidden="true"

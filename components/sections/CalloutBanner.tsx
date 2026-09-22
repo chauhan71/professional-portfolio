@@ -35,7 +35,7 @@ export default function CalloutBanner() {
       data-torch-zone="true"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative overflow-hidden border-y border-white/5 py-16 md:py-24 bg-[#0a0a0a] select-none cursor-none"
+      className="group relative overflow-hidden border-y border-white/5 py-16 md:py-24 bg-[#0a0a0a] select-none md:cursor-none"
     >
       {/* Badge */}
       <motion.div
@@ -68,7 +68,7 @@ export default function CalloutBanner() {
               {[...row1Items, ...row1Items].map((item, i) => (
                 <span
                   key={`base-1-${i}`}
-                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber"
+                  className="font-display text-5xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber"
                 >
                   {item}
                   <span className="inline-block w-12 sm:w-16 md:w-24 h-2 sm:h-3 md:h-3.5 mx-6 border-2 border-amber-500 rounded-xs align-middle" />
@@ -86,7 +86,7 @@ export default function CalloutBanner() {
               {[...row1Items, ...row1Items].map((item, i) => (
                 <span
                   key={`base-1-dup-${i}`}
-                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber"
+                  className="font-display text-5xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber"
                 >
                   {item}
                   <span className="inline-block w-12 sm:w-16 md:w-24 h-2 sm:h-3 md:h-3.5 mx-6 border-2 border-amber-500 rounded-xs align-middle" />
@@ -107,7 +107,7 @@ export default function CalloutBanner() {
               {[...row2Items, ...row2Items].map((item, i) => (
                 <span
                   key={`base-2-${i}`}
-                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white"
+                  className="font-display text-5xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white"
                 >
                   {item}
                   <span className="inline-block w-12 sm:w-16 md:w-24 h-2 sm:h-3 md:h-3.5 mx-6 border-2 border-white/85 rounded-xs align-middle" />
@@ -125,7 +125,7 @@ export default function CalloutBanner() {
               {[...row2Items, ...row2Items].map((item, i) => (
                 <span
                   key={`base-2-dup-${i}`}
-                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white"
+                  className="font-display text-5xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white"
                 >
                   {item}
                   <span className="inline-block w-12 sm:w-16 md:w-24 h-2 sm:h-3 md:h-3.5 mx-6 border-2 border-white/85 rounded-xs align-middle" />
@@ -161,7 +161,7 @@ export default function CalloutBanner() {
               {[...row1Items, ...row1Items].map((item, i) => (
                 <span
                   key={`amber-1-${i}`}
-                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber filter drop-shadow-[0_0_20px_rgba(245,158,11,0.95)]"
+                  className="font-display text-5xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber filter drop-shadow-[0_0_20px_rgba(245,158,11,0.95)]"
                 >
                   {item}
                   <span className="inline-block w-12 sm:w-16 md:w-24 h-2 sm:h-3 md:h-3.5 mx-6 border-2 border-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.9)] rounded-xs align-middle" />
@@ -178,7 +178,7 @@ export default function CalloutBanner() {
               {[...row1Items, ...row1Items].map((item, i) => (
                 <span
                   key={`amber-1-dup-${i}`}
-                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber filter drop-shadow-[0_0_20px_rgba(245,158,11,0.95)]"
+                  className="font-display text-5xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-amber filter drop-shadow-[0_0_20px_rgba(245,158,11,0.95)]"
                 >
                   {item}
                   <span className="inline-block w-12 sm:w-16 md:w-24 h-2 sm:h-3 md:h-3.5 mx-6 border-2 border-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.9)] rounded-xs align-middle" />
@@ -199,7 +199,7 @@ export default function CalloutBanner() {
               {[...row2Items, ...row2Items].map((item, i) => (
                 <span
                   key={`amber-2-${i}`}
-                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white filter drop-shadow-[0_0_20px_rgba(255,255,255,0.95)]"
+                  className="font-display text-5xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white filter drop-shadow-[0_0_20px_rgba(255,255,255,0.95)]"
                 >
                   {item}
                   <span className="inline-block w-12 sm:w-16 md:w-24 h-2 sm:h-3 md:h-3.5 mx-6 border-2 border-white shadow-[0_0_12px_rgba(255,255,255,0.9)] rounded-xs align-middle" />
@@ -216,7 +216,7 @@ export default function CalloutBanner() {
               {[...row2Items, ...row2Items].map((item, i) => (
                 <span
                   key={`amber-2-dup-${i}`}
-                  className="font-display text-6xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white filter drop-shadow-[0_0_20px_rgba(255,255,255,0.95)]"
+                  className="font-display text-5xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-stroke-white filter drop-shadow-[0_0_20px_rgba(255,255,255,0.95)]"
                 >
                   {item}
                   <span className="inline-block w-12 sm:w-16 md:w-24 h-2 sm:h-3 md:h-3.5 mx-6 border-2 border-white shadow-[0_0_12px_rgba(255,255,255,0.9)] rounded-xs align-middle" />

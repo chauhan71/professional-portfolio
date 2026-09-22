@@ -65,18 +65,17 @@ export default function TechStack() {
           <h2 className="mx-auto mt-3 max-w-3xl font-display text-4xl font-bold tracking-tight text-white md:text-5xl">
             The tools I use to <span className="underline decoration-amber-500 decoration-2 underline-offset-4">build</span> the future.
           </h2>
-          <p className="mt-3 text-xs tracking-[0.25em] uppercase text-neutral-500 font-mono select-none">
-            {isOpen ? 'Hover out to tuck back in' : isMobile ? 'Tap wallet to pull cards out' : 'Hover wallet to draw cards'}
-          </p>
         </motion.div>
 
         {/* Interactive Wallet & Card Deck Stage */}
         <div
-          className="relative mx-auto flex min-h-[440px] sm:min-h-[460px] md:min-h-[480px] w-full max-w-5xl items-center justify-center py-6 cursor-pointer"
-          onMouseEnter={() => setIsOpen(true)}
+          className="relative mx-auto flex min-h-[580px] sm:min-h-[460px] md:min-h-[480px] w-full max-w-5xl items-center justify-center py-6 cursor-pointer"
+          onMouseEnter={() => !isMobile && setIsOpen(true)}
           onMouseLeave={() => {
-            setIsOpen(false);
-            setHoveredCard(null);
+            if (!isMobile) {
+              setIsOpen(false);
+              setHoveredCard(null);
+            }
           }}
           onClick={() => setIsOpen((prev) => !prev)}
         >
@@ -86,9 +85,9 @@ export default function TechStack() {
             {/* 1. Wallet Back Sleeve (Behind the cards, z-0)            */}
             {/* -------------------------------------------------------- */}
             <motion.div
-              className="absolute w-64 sm:w-72 h-52 sm:h-56 rounded-2xl bg-gradient-to-b from-[#1c1c1c] via-[#121212] to-[#0a0a0a] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] z-0 pointer-events-none"
+              className="absolute w-60 sm:w-72 h-48 sm:h-56 rounded-2xl bg-gradient-to-b from-[#1c1c1c] via-[#121212] to-[#0a0a0a] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] z-0 pointer-events-none"
               animate={{
-                y: isOpen ? 110 : 38,
+                y: isOpen ? (isMobile ? 180 : 110) : 38,
                 scale: isOpen ? 0.98 : 1,
               }}
               transition={{
@@ -108,16 +107,16 @@ export default function TechStack() {
             {stack.map((s, i) => {
               // Row offset calculation on desktop vs mobile
               let targetX = tuckedOffsets[i].x;
-              let targetY = tuckedOffsets[i].y;
+              let targetY = isMobile ? tuckedOffsets[i].y + 15 : tuckedOffsets[i].y;
               let targetRotate = tuckedOffsets[i].rotate;
               let targetScale = 1;
 
               if (isOpen) {
                 if (isMobile) {
-                  // 2x2 fanned cluster above the wallet
-                  targetX = i % 2 === 0 ? -92 : 92;
-                  targetY = i < 2 ? -135 : -35;
-                  targetScale = hoveredCard === i ? 0.94 : 0.88;
+                  // Non-overlapping 2x2 grid cleanly spaced above the wallet
+                  targetX = i % 2 === 0 ? -80 : 80;
+                  targetY = i < 2 ? -185 : -10;
+                  targetScale = hoveredCard === i ? 1.03 : 0.96;
                   targetRotate = 0;
                 } else {
                   // Full single horizontal row fanned above the wallet
@@ -139,7 +138,11 @@ export default function TechStack() {
               return (
                 <motion.div
                   key={s.category}
-                  className="absolute w-52 sm:w-56 aspect-square rounded-2xl border border-white/10 bg-[#111] p-4 sm:p-5 flex flex-col justify-between shadow-[0_15px_35px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-colors duration-300 select-none"
+                  className={`absolute w-[154px] sm:w-56 h-[162px] sm:h-auto sm:aspect-square rounded-2xl border ${
+                    hoveredCard === i
+                      ? 'border-amber-400/80 shadow-[0_0_25px_rgba(245,158,11,0.3)]'
+                      : 'border-white/10'
+                  } bg-[#111] p-3 sm:p-5 flex flex-col justify-between shadow-[0_15px_35px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-all duration-300 select-none`}
                   style={{
                     zIndex: targetZIndex,
                   }}
@@ -155,23 +158,29 @@ export default function TechStack() {
                     damping: 24,
                     mass: 0.8,
                   }}
-                  onMouseEnter={() => isOpen && setHoveredCard(i)}
-                  onMouseLeave={() => isOpen && setHoveredCard(null)}
+                  onClick={(e) => {
+                    if (isMobile && isOpen) {
+                      e.stopPropagation();
+                      setHoveredCard((prev) => (prev === i ? null : i));
+                    }
+                  }}
+                  onMouseEnter={() => !isMobile && isOpen && setHoveredCard(i)}
+                  onMouseLeave={() => !isMobile && isOpen && setHoveredCard(null)}
                 >
                   {/* Card Header */}
                   <div className="flex items-center justify-between">
-                    <h3 className="font-display text-sm sm:text-base font-bold text-amber-400 tracking-tight">
+                    <h3 className="font-display text-xs sm:text-base font-bold text-amber-400 tracking-tight">
                       {s.category}
                     </h3>
                     <div className="h-1.5 w-1.5 rounded-full bg-amber-400/60 shadow-[0_0_8px_rgba(245,158,11,0.7)]" />
                   </div>
 
                   {/* Compact Skill Badges */}
-                  <div className="my-auto flex flex-wrap gap-1.5 pt-2">
+                  <div className="my-auto flex flex-wrap gap-1 sm:gap-1.5 py-1">
                     {s.tools.map((tool) => (
                       <span
                         key={tool}
-                        className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-neutral-300 transition-colors hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-white"
+                        className="rounded-md border border-white/10 bg-white/[0.04] px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-[11px] font-medium text-neutral-300 transition-colors hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-white"
                       >
                         {tool}
                       </span>
@@ -179,7 +188,7 @@ export default function TechStack() {
                   </div>
 
                   {/* Bottom Counter */}
-                  <div className="flex items-center justify-between pt-1 border-t border-white/5 text-[10px] text-neutral-500 uppercase tracking-widest font-mono">
+                  <div className="flex items-center justify-between pt-1 border-t border-white/5 text-[9px] sm:text-[10px] text-neutral-500 uppercase tracking-widest font-mono">
                     <span>{s.tools.length} Skills</span>
                     <span>0{i + 1}</span>
                   </div>
@@ -191,9 +200,9 @@ export default function TechStack() {
             {/* 3. Wallet Front Pocket with Thumb Notch Cutout (z-30)    */}
             {/* -------------------------------------------------------- */}
             <motion.div
-              className="absolute w-64 sm:w-72 h-44 sm:h-48 z-30 pointer-events-none"
+              className="absolute w-60 sm:w-72 h-40 sm:h-48 z-30 pointer-events-none"
               animate={{
-                y: isOpen ? 122 : 54,
+                y: isOpen ? (isMobile ? 190 : 122) : 54,
                 scale: isOpen ? 0.98 : 1,
               }}
               transition={{
