@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useRef, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
-const row1Items = ['WILD IDEAS!', 'WILD IDEAS!', 'WILD IDEAS!', 'WILD IDEAS!'];
+const row1Items = ["WILD IDEAS!", "WILD IDEAS!", "WILD IDEAS!", "WILD IDEAS!"];
 const row2Items = ["LET'S DIVE IN!", "LET'S DIVE IN!", "LET'S DIVE IN!", "LET'S DIVE IN!"];
 
 export default function CalloutBanner() {
@@ -19,13 +19,13 @@ export default function CalloutBanner() {
       const rect = section.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      section.style.setProperty('--torch-x', `${x}px`);
-      section.style.setProperty('--torch-y', `${y}px`);
+      section.style.setProperty("--torch-x", `${x}px`);
+      section.style.setProperty("--torch-y", `${y}px`);
     };
 
-    section.addEventListener('mousemove', handleMouseMove, { passive: true });
+    section.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => {
-      section.removeEventListener('mousemove', handleMouseMove);
+      section.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
@@ -61,8 +61,8 @@ export default function CalloutBanner() {
             <div
               className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform group-hover:[animation-play-state:paused]"
               style={{
-                animation: 'marquee 45s linear infinite',
-                animationPlayState: isHovered ? 'paused' : 'running',
+                animation: "marquee 45s linear infinite",
+                animationPlayState: isHovered ? "paused" : "running",
               }}
             >
               {[...row1Items, ...row1Items].map((item, i) => (
@@ -78,8 +78,8 @@ export default function CalloutBanner() {
             <div
               className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform group-hover:[animation-play-state:paused]"
               style={{
-                animation: 'marquee 45s linear infinite',
-                animationPlayState: isHovered ? 'paused' : 'running',
+                animation: "marquee 45s linear infinite",
+                animationPlayState: isHovered ? "paused" : "running",
               }}
               aria-hidden
             >
@@ -100,8 +100,8 @@ export default function CalloutBanner() {
             <div
               className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform group-hover:[animation-play-state:paused]"
               style={{
-                animation: 'marquee-reverse 45s linear infinite',
-                animationPlayState: isHovered ? 'paused' : 'running',
+                animation: "marquee-reverse 45s linear infinite",
+                animationPlayState: isHovered ? "paused" : "running",
               }}
             >
               {[...row2Items, ...row2Items].map((item, i) => (
@@ -117,8 +117,8 @@ export default function CalloutBanner() {
             <div
               className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform group-hover:[animation-play-state:paused]"
               style={{
-                animation: 'marquee-reverse 45s linear infinite',
-                animationPlayState: isHovered ? 'paused' : 'running',
+                animation: "marquee-reverse 45s linear infinite",
+                animationPlayState: isHovered ? "paused" : "running",
               }}
               aria-hidden
             >
@@ -139,13 +139,14 @@ export default function CalloutBanner() {
         {/* LAYER 2: ILLUMINATED GLOWING TEXT (Revealed by Torch)          */}
         {/* ============================================================== */}
         <div
-          className={`pointer-events-none absolute inset-0 flex flex-col gap-8 md:gap-20 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'
-            }`}
+          className={`pointer-events-none absolute inset-0 flex flex-col gap-8 md:gap-20 transition-opacity duration-300 ${
+            isHovered ? "opacity-100" : "opacity-0"
+          }`}
           style={{
             WebkitMaskImage:
-              'radial-gradient(ellipse 280px 200px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 30px), black 30%, rgba(0,0,0,0.5) 60%, transparent 100%)',
+              "radial-gradient(ellipse 280px 200px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 30px), black 30%, rgba(0,0,0,0.5) 60%, transparent 100%)",
             maskImage:
-              'radial-gradient(ellipse 280px 200px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 30px), black 30%, rgba(0,0,0,0.5) 60%, transparent 100%)',
+              "radial-gradient(ellipse 280px 200px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 30px), black 30%, rgba(0,0,0,0.5) 60%, transparent 100%)",
           }}
           aria-hidden
         >
@@ -154,8 +155,8 @@ export default function CalloutBanner() {
             <div
               className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform group-hover:[animation-play-state:paused]"
               style={{
-                animation: 'marquee 45s linear infinite',
-                animationPlayState: isHovered ? 'paused' : 'running',
+                animation: "marquee 45s linear infinite",
+                animationPlayState: isHovered ? "paused" : "running",
               }}
             >
               {[...row1Items, ...row1Items].map((item, i) => (
@@ -171,8 +172,8 @@ export default function CalloutBanner() {
             <div
               className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform group-hover:[animation-play-state:paused]"
               style={{
-                animation: 'marquee 45s linear infinite',
-                animationPlayState: isHovered ? 'paused' : 'running',
+                animation: "marquee 45s linear infinite",
+                animationPlayState: isHovered ? "paused" : "running",
               }}
             >
               {[...row1Items, ...row1Items].map((item, i) => (
@@ -192,8 +193,8 @@ export default function CalloutBanner() {
             <div
               className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform group-hover:[animation-play-state:paused]"
               style={{
-                animation: 'marquee-reverse 45s linear infinite',
-                animationPlayState: isHovered ? 'paused' : 'running',
+                animation: "marquee-reverse 45s linear infinite",
+                animationPlayState: isHovered ? "paused" : "running",
               }}
             >
               {[...row2Items, ...row2Items].map((item, i) => (
@@ -209,8 +210,8 @@ export default function CalloutBanner() {
             <div
               className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 will-change-transform group-hover:[animation-play-state:paused]"
               style={{
-                animation: 'marquee-reverse 45s linear infinite',
-                animationPlayState: isHovered ? 'paused' : 'running',
+                animation: "marquee-reverse 45s linear infinite",
+                animationPlayState: isHovered ? "paused" : "running",
               }}
             >
               {[...row2Items, ...row2Items].map((item, i) => (
@@ -230,11 +231,12 @@ export default function CalloutBanner() {
         {/* LAYER 3: AMBIENT TORCHLIGHT SPOTLIGHT GLOW                     */}
         {/* ============================================================== */}
         <div
-          className={`pointer-events-none absolute inset-0 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'
-            }`}
+          className={`pointer-events-none absolute inset-0 transition-opacity duration-300 ${
+            isHovered ? "opacity-100" : "opacity-0"
+          }`}
           style={{
             background:
-              'radial-gradient(circle 280px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 35px), rgba(245, 158, 11, 0.32) 0%, rgba(217, 119, 6, 0.16) 40%, rgba(245, 158, 11, 0.03) 70%, transparent 100%), radial-gradient(ellipse 360px 220px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 60px), rgba(251, 191, 36, 0.2) 0%, rgba(245, 158, 11, 0.07) 50%, transparent 80%)',
+              "radial-gradient(circle 280px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 35px), rgba(245, 158, 11, 0.32) 0%, rgba(217, 119, 6, 0.16) 40%, rgba(245, 158, 11, 0.03) 70%, transparent 100%), radial-gradient(ellipse 360px 220px at var(--torch-x, -999px) calc(var(--torch-y, -999px) - 60px), rgba(251, 191, 36, 0.2) 0%, rgba(245, 158, 11, 0.07) 50%, transparent 80%)",
           }}
           aria-hidden
         />
@@ -243,12 +245,13 @@ export default function CalloutBanner() {
         {/* LAYER 4: THE TORCH CURSOR GRAPHIC                              */}
         {/* ============================================================== */}
         <div
-          className={`pointer-events-none absolute left-0 top-0 z-40 transition-opacity duration-200 ${isHovered ? 'opacity-100' : 'opacity-0'
-            }`}
+          className={`pointer-events-none absolute left-0 top-0 z-40 transition-opacity duration-200 ${
+            isHovered ? "opacity-100" : "opacity-0"
+          }`}
           style={{
             transform:
-              'translate3d(var(--torch-x, -999px), var(--torch-y, -999px), 0) translate(-50%, -50%)',
-            willChange: 'transform',
+              "translate3d(var(--torch-x, -999px), var(--torch-y, -999px), 0) translate(-50%, -50%)",
+            willChange: "transform",
           }}
           aria-hidden
         >
@@ -263,7 +266,7 @@ export default function CalloutBanner() {
                 className="w-4 h-6 rounded-t-full rounded-b-sm bg-gradient-to-t from-amber-500 via-amber-200 to-white"
                 style={{
                   boxShadow:
-                    '0 0 12px 3px #ffffff, 0 0 24px 8px #f59e0b, 0 -12px 32px 10px rgba(251, 191, 36, 0.65)',
+                    "0 0 12px 3px #ffffff, 0 0 24px 8px #f59e0b, 0 -12px 32px 10px rgba(251, 191, 36, 0.65)",
                 }}
               />
             </div>
@@ -291,8 +294,7 @@ export default function CalloutBanner() {
         className="relative z-10 mt-10 text-center"
       >
         <p className="mx-auto max-w-xl text-sm sm:text-base leading-relaxed text-neutral-400 pointer-events-auto">
-          Like a lion&apos;s roar echoing through the jungle, a hint of our
-          creative minds emerges.
+          Like a lion&apos;s roar echoing through the jungle, a hint of our creative minds emerges.
         </p>
         <a
           href="https://dribbble.com"

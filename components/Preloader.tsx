@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useCallback, useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Particle {
   x: number;
@@ -19,18 +19,11 @@ interface Particle {
 }
 
 export type IntroPhase =
-  | 'forming'
-  | 'ready'
-  | 'scatter'
-  | 'landscape'
-  | 'nameIn'
-  | 'nameFill'
-  | 'nameHold'
-  | 'exiting';
+  "forming" | "ready" | "scatter" | "landscape" | "nameIn" | "nameFill" | "nameHold" | "exiting";
 
-const PORTRAIT_URL = '/ritik_portrait.png?v=2';
-const ICEBERG_BG_URL = '/arctic_open_lagoon.jpg';
-const ICEBERG_FRAME_URL = '/iceberg_frame.png';
+const PORTRAIT_URL = "/ritik_portrait.png?v=2";
+const ICEBERG_BG_URL = "/arctic_open_lagoon.jpg";
+const ICEBERG_FRAME_URL = "/iceberg_frame.png";
 
 const PARTICLE_GAP = 3.2;
 const FORMATION_DURATION = 3000; // 3.0 seconds snappy & fluid formation
@@ -47,16 +40,12 @@ interface PreloaderProps {
 function GlyphR({ isFilled, delay }: { isFilled: boolean; delay: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 35, filter: 'blur(14px)' }}
-      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      initial={{ opacity: 0, y: 35, filter: "blur(14px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] }}
       className="relative flex-1 max-w-[130px] aspect-[76/100]"
     >
-      <svg
-        viewBox="0 0 76 100"
-        className="w-full h-full overflow-visible"
-        fill="none"
-      >
+      <svg viewBox="0 0 76 100" className="w-full h-full overflow-visible" fill="none">
         {/* Wireframe outline (Photos 2 & 3) */}
         <motion.path
           d="M 10,5 L 10,95 M 10,5 L 46,5 C 64,5 72,16 72,29 C 72,42 64,52 46,52 L 10,52 M 40,52 L 72,95"
@@ -67,7 +56,7 @@ function GlyphR({ isFilled, delay }: { isFilled: boolean; delay: number }) {
           animate={{
             opacity: isFilled ? 0.25 : 0.95,
           }}
-          transition={{ duration: 0.7, ease: 'easeInOut' }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
         />
         {/* Solid geometric glyph (Photo 4) with transparent inner loop */}
         <motion.path
@@ -90,16 +79,12 @@ function GlyphR({ isFilled, delay }: { isFilled: boolean; delay: number }) {
 function GlyphI({ isFilled, delay }: { isFilled: boolean; delay: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 35, filter: 'blur(14px)' }}
-      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      initial={{ opacity: 0, y: 35, filter: "blur(14px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] }}
       className="relative w-[4vw] max-w-[32px] min-w-[12px] aspect-[20/100]"
     >
-      <svg
-        viewBox="0 0 20 100"
-        className="w-full h-full overflow-visible"
-        fill="none"
-      >
+      <svg viewBox="0 0 20 100" className="w-full h-full overflow-visible" fill="none">
         {/* Wireframe outline */}
         <motion.line
           x1="10"
@@ -112,7 +97,7 @@ function GlyphI({ isFilled, delay }: { isFilled: boolean; delay: number }) {
           animate={{
             opacity: isFilled ? 0.25 : 0.95,
           }}
-          transition={{ duration: 0.7, ease: 'easeInOut' }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
         />
         {/* Solid geometric pillar */}
         <motion.rect
@@ -138,16 +123,12 @@ function GlyphI({ isFilled, delay }: { isFilled: boolean; delay: number }) {
 function GlyphT({ isFilled, delay }: { isFilled: boolean; delay: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 35, filter: 'blur(14px)' }}
-      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      initial={{ opacity: 0, y: 35, filter: "blur(14px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] }}
       className="relative flex-1 max-w-[125px] aspect-[72/100]"
     >
-      <svg
-        viewBox="0 0 72 100"
-        className="w-full h-full overflow-visible"
-        fill="none"
-      >
+      <svg viewBox="0 0 72 100" className="w-full h-full overflow-visible" fill="none">
         {/* Wireframe outline */}
         <motion.path
           d="M 2,12 H 70 M 36,12 V 95"
@@ -157,7 +138,7 @@ function GlyphT({ isFilled, delay }: { isFilled: boolean; delay: number }) {
           animate={{
             opacity: isFilled ? 0.25 : 0.95,
           }}
-          transition={{ duration: 0.7, ease: 'easeInOut' }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
         />
         {/* Solid geometric T block */}
         <motion.path
@@ -179,16 +160,12 @@ function GlyphT({ isFilled, delay }: { isFilled: boolean; delay: number }) {
 function GlyphK({ isFilled, delay }: { isFilled: boolean; delay: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 35, filter: 'blur(14px)' }}
-      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      initial={{ opacity: 0, y: 35, filter: "blur(14px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] }}
       className="relative flex-1 max-w-[130px] aspect-[76/100]"
     >
-      <svg
-        viewBox="0 0 76 100"
-        className="w-full h-full overflow-visible"
-        fill="none"
-      >
+      <svg viewBox="0 0 76 100" className="w-full h-full overflow-visible" fill="none">
         {/* Wireframe outline */}
         <motion.path
           d="M 10,5 V 95 M 10,52 L 68,5 M 24,39 L 70,95"
@@ -199,7 +176,7 @@ function GlyphK({ isFilled, delay }: { isFilled: boolean; delay: number }) {
           animate={{
             opacity: isFilled ? 0.25 : 0.95,
           }}
-          transition={{ duration: 0.7, ease: 'easeInOut' }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
         />
         {/* Solid geometric K */}
         <motion.path
@@ -227,8 +204,8 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef({ x: -9999, y: -9999 });
   const rafRef = useRef(0);
-  const phaseRef = useRef<IntroPhase>('forming');
-  const [phase, setPhase] = useState<IntroPhase>('forming');
+  const phaseRef = useRef<IntroPhase>("forming");
+  const [phase, setPhase] = useState<IntroPhase>("forming");
   const [isScattered, setIsScattered] = useState(false);
   const isScatteredRef = useRef(false);
   const reassembleStartedAtRef = useRef(0);
@@ -246,9 +223,9 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
 
   // Exit transition to hero section
   const handleExit = useCallback(() => {
-    if (phaseRef.current === 'exiting') return;
+    if (phaseRef.current === "exiting") return;
     clearAllTimeouts();
-    setIntroPhase('exiting');
+    setIntroPhase("exiting");
     onExitStart?.();
 
     const exitTimer = setTimeout(() => {
@@ -259,9 +236,9 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
 
   // Stage A: Radial Shockwave on "Click to Enter"
   const handleEnter = useCallback(() => {
-    if (phaseRef.current !== 'ready') return;
+    if (phaseRef.current !== "ready") return;
     clearAllTimeouts();
-    setIntroPhase('scatter');
+    setIntroPhase("scatter");
 
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
@@ -276,29 +253,29 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
 
     // Stage A (0ms - 400ms) -> Stage B: Iceberg Cave Entry & Camera Fly-Through
     const tLandscape = setTimeout(() => {
-      if (phaseRef.current === 'scatter') {
-        setIntroPhase('landscape');
+      if (phaseRef.current === "scatter") {
+        setIntroPhase("landscape");
       }
     }, 400);
 
     // Stage B (400ms - 1700ms) -> Stage C Part 1: Wireframe Name Appears
     const tNameIn = setTimeout(() => {
-      if (phaseRef.current === 'landscape') {
-        setIntroPhase('nameIn');
+      if (phaseRef.current === "landscape") {
+        setIntroPhase("nameIn");
       }
     }, 1700);
 
     // Stage C Part 2 (3000ms): Foreground Iceberg Cave Vanishes, Letters Fill to Solid White
     const tNameFill = setTimeout(() => {
-      if (phaseRef.current === 'nameIn') {
-        setIntroPhase('nameFill');
+      if (phaseRef.current === "nameIn") {
+        setIntroPhase("nameFill");
       }
     }, 3000);
 
     // Stage D (3700ms): Name Hold with interactive hint
     const tHold = setTimeout(() => {
-      if (phaseRef.current === 'nameFill') {
-        setIntroPhase('nameHold');
+      if (phaseRef.current === "nameFill") {
+        setIntroPhase("nameHold");
       }
     }, 3700);
 
@@ -307,7 +284,7 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
 
   // Toggle Scatter / Reassemble on background click (does not advance stage)
   const handleToggleScatter = useCallback((clickX?: number, clickY?: number) => {
-    if (phaseRef.current !== 'ready') return;
+    if (phaseRef.current !== "ready") return;
     const nextScattered = !isScatteredRef.current;
     isScatteredRef.current = nextScattered;
     setIsScattered(nextScattered);
@@ -338,13 +315,13 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
 
   // Click anywhere handler
   const handleScreenClick = (event: React.MouseEvent) => {
-    if (phase === 'ready') {
+    if (phase === "ready") {
       handleToggleScatter(event.clientX, event.clientY);
     } else if (
-      phase === 'landscape' ||
-      phase === 'nameIn' ||
-      phase === 'nameFill' ||
-      phase === 'nameHold'
+      phase === "landscape" ||
+      phase === "nameIn" ||
+      phase === "nameFill" ||
+      phase === "nameHold"
     ) {
       handleExit();
     }
@@ -352,7 +329,7 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas?.getContext('2d');
+    const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
 
     let width = window.innerWidth;
@@ -368,8 +345,8 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
     };
     resize();
 
-    const mask = document.createElement('canvas');
-    const maskCtx = mask.getContext('2d');
+    const mask = document.createElement("canvas");
+    const maskCtx = mask.getContext("2d");
     if (!maskCtx) return;
 
     const portrait = new Image();
@@ -403,9 +380,12 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
       const particles: Particle[] = [];
 
       // Sample corner pixels to auto-detect whether image has a white or dark background
-      const c1 = (pixels[0] * 0.299 + pixels[1] * 0.587 + pixels[2] * 0.114);
-      const c2 = (pixels[(portraitWidth - 1) * 4] * 0.299 + pixels[(portraitWidth - 1) * 4 + 1] * 0.587 + pixels[(portraitWidth - 1) * 4 + 2] * 0.114);
-      const isLightBg = ((c1 + c2) / 2) > 120;
+      const c1 = pixels[0] * 0.299 + pixels[1] * 0.587 + pixels[2] * 0.114;
+      const c2 =
+        pixels[(portraitWidth - 1) * 4] * 0.299 +
+        pixels[(portraitWidth - 1) * 4 + 1] * 0.587 +
+        pixels[(portraitWidth - 1) * 4 + 2] * 0.114;
+      const isLightBg = (c1 + c2) / 2 > 120;
 
       for (let y = 0; y < portraitHeight; y += PARTICLE_GAP) {
         for (let x = 0; x < portraitWidth; x += PARTICLE_GAP) {
@@ -458,32 +438,35 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
 
     const animate = (now: number) => {
       const currentPhase = phaseRef.current;
-      if (currentPhase === 'exiting') return;
+      if (currentPhase === "exiting") return;
 
       if (!portraitReady) {
-        ctx.fillStyle = '#0a0a0a';
+        ctx.fillStyle = "#0a0a0a";
         ctx.fillRect(0, 0, width, height);
         rafRef.current = requestAnimationFrame(animate);
         return;
       }
 
-      ctx.fillStyle = 'rgba(10, 10, 10, 0.24)';
+      ctx.fillStyle = "rgba(10, 10, 10, 0.24)";
       ctx.fillRect(0, 0, width, height);
 
       // Compute identical assembly progress for both initial page load and reassembly
       let currentEased = 1;
       let isAssembling = false;
 
-      if (currentPhase === 'forming') {
+      if (currentPhase === "forming") {
         isAssembling = true;
         const formationProgress = Math.min(1, (now - startedAt) / FORMATION_DURATION);
         currentEased = 1 - Math.pow(1 - formationProgress, 3);
         if (formationProgress >= 1) {
-          setIntroPhase('ready');
+          setIntroPhase("ready");
         }
-      } else if (currentPhase === 'ready' && !isScatteredRef.current) {
+      } else if (currentPhase === "ready" && !isScatteredRef.current) {
         isAssembling = true;
-        const reassembleProgress = Math.min(1, (now - reassembleStartedAtRef.current) / FORMATION_DURATION);
+        const reassembleProgress = Math.min(
+          1,
+          (now - reassembleStartedAtRef.current) / FORMATION_DURATION
+        );
         currentEased = 1 - Math.pow(1 - reassembleProgress, 3);
       }
 
@@ -491,12 +474,12 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
       const repulsionRadius = 38; // Compact cursor ripple (reduced from 90 to prevent giant hollow hole)
       const repulsionRadiusSq = repulsionRadius * repulsionRadius;
 
-      const isScattering = currentPhase === 'scatter';
+      const isScattering = currentPhase === "scatter";
 
       for (const particle of particlesRef.current) {
         if (isAssembling) {
           // Identical, consistent fluid pull for both initial refresh and scatter reassembly
-          const pull = 0.010 + currentEased * 0.045;
+          const pull = 0.01 + currentEased * 0.045;
           particle.vx += (particle.faceX - particle.x) * pull;
           particle.vy += (particle.faceY - particle.y) * pull;
 
@@ -507,7 +490,7 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
             particle.vx = (particle.vx / currentSpeed) * maxSpeed;
             particle.vy = (particle.vy / currentSpeed) * maxSpeed;
           }
-        } else if (currentPhase === 'ready' && isScatteredRef.current) {
+        } else if (currentPhase === "ready" && isScatteredRef.current) {
           // Scattered: drift towards wide-screen coordinates
           particle.vx += (particle.scatterX - particle.x) * 0.006;
           particle.vy += (particle.scatterY - particle.y) * 0.006;
@@ -516,7 +499,12 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
         const dx = particle.x - mouse.x;
         const dy = particle.y - mouse.y;
         const distanceSq = dx * dx + dy * dy;
-        if (distanceSq < repulsionRadiusSq && distanceSq > 0 && currentPhase === 'ready' && !isScattering) {
+        if (
+          distanceSq < repulsionRadiusSq &&
+          distanceSq > 0 &&
+          currentPhase === "ready" &&
+          !isScattering
+        ) {
           const distance = Math.sqrt(distanceSq);
           const force = (repulsionRadius - distance) / repulsionRadius;
           particle.vx += (dx / distance) * force * 2.8;
@@ -524,11 +512,7 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
         }
 
         // Identical 0.86 friction for consistent feeling
-        const friction = isScattering
-          ? 0.985
-          : isScatteredRef.current
-            ? 0.94
-            : 0.86;
+        const friction = isScattering ? 0.985 : isScatteredRef.current ? 0.94 : 0.86;
         particle.vx *= friction;
         particle.vy *= friction;
         particle.x += particle.vx;
@@ -550,38 +534,34 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
     const onMouseMove = (event: MouseEvent) => {
       mouseRef.current = { x: event.clientX, y: event.clientY };
     };
-    window.addEventListener('resize', resize);
-    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener("resize", resize);
+    window.addEventListener("mousemove", onMouseMove);
 
     return () => {
       cancelAnimationFrame(rafRef.current);
       portrait.onload = null;
-      window.removeEventListener('resize', resize);
-      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("mousemove", onMouseMove);
       clearAllTimeouts();
     };
   }, [clearAllTimeouts, setIntroPhase]);
 
   const showLandscape =
-    phase === 'landscape' ||
-    phase === 'nameIn' ||
-    phase === 'nameFill' ||
-    phase === 'nameHold' ||
-    phase === 'exiting';
+    phase === "landscape" ||
+    phase === "nameIn" ||
+    phase === "nameFill" ||
+    phase === "nameHold" ||
+    phase === "exiting";
 
   const showName =
-    phase === 'nameIn' ||
-    phase === 'nameFill' ||
-    phase === 'nameHold' ||
-    phase === 'exiting';
+    phase === "nameIn" || phase === "nameFill" || phase === "nameHold" || phase === "exiting";
 
-  const isFilled =
-    phase === 'nameFill' || phase === 'nameHold' || phase === 'exiting';
+  const isFilled = phase === "nameFill" || phase === "nameHold" || phase === "exiting";
 
   return (
     <motion.div
       className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-[#0a0a0a] cursor-pointer select-none"
-      animate={phase === 'exiting' ? { y: '-100%' } : { y: '0%' }}
+      animate={phase === "exiting" ? { y: "-100%" } : { y: "0%" }}
       transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
       onClick={handleScreenClick}
     >
@@ -590,16 +570,16 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
         ref={canvasRef}
         className="absolute inset-0 pointer-events-none"
         animate={{
-          opacity: phase === 'forming' || phase === 'ready' ? 1 : 0,
+          opacity: phase === "forming" || phase === "ready" ? 1 : 0,
         }}
         transition={{
           duration: 0.45,
-          ease: 'easeOut',
+          ease: "easeOut",
         }}
       />
 
       {/* Subtle radial glow during forming/ready */}
-      {(phase === 'forming' || phase === 'ready') && (
+      {(phase === "forming" || phase === "ready") && (
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.06),transparent_38%)]" />
       )}
 
@@ -620,7 +600,7 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
               scale: 1.0,
             }}
             transition={{
-              opacity: { duration: 0.9, ease: 'easeOut' },
+              opacity: { duration: 0.9, ease: "easeOut" },
               scale: { duration: 4.4, ease: [0.22, 1, 0.36, 1] },
             }}
           />
@@ -650,7 +630,7 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 1.2, ease: 'easeOut' }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
                 className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_48%,rgba(5,15,30,0.55)_100%)]"
               />
             )}
@@ -671,8 +651,8 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
 
               {/* Subtitle matching Photo 3 & 4 */}
               <motion.p
-                initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }}
-                animate={{ opacity: 0.92, y: 0, filter: 'blur(0px)' }}
+                initial={{ opacity: 0, y: 18, filter: "blur(6px)" }}
+                animate={{ opacity: 0.92, y: 0, filter: "blur(0px)" }}
                 transition={{
                   duration: 0.9,
                   delay: 0.68,
@@ -689,13 +669,13 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
       )}
 
       {/* Stage D: Hold Prompt ("Click anywhere to continue") */}
-      {phase === 'nameHold' && (
+      {phase === "nameHold" && (
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: [0.4, 0.9, 0.4], y: 0 }}
           transition={{
-            opacity: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' },
-            y: { duration: 0.6, ease: 'easeOut' },
+            opacity: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+            y: { duration: 0.6, ease: "easeOut" },
           }}
           className="pointer-events-none absolute bottom-8 left-0 right-0 z-20 text-center"
         >
@@ -706,35 +686,35 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
       )}
 
       {/* Discreet Skip Button available throughout landscape/name sequence */}
-      {(phase === 'landscape' ||
-        phase === 'nameIn' ||
-        phase === 'nameFill' ||
-        phase === 'nameHold') && (
-          <motion.button
-            type="button"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleExit();
-            }}
-            className="absolute right-6 top-6 z-40 rounded-full border border-white/25 bg-black/40 px-4 py-1.5 text-[11px] font-light tracking-[0.25em] text-white/90 backdrop-blur-md transition-colors hover:border-white/60 hover:bg-black/60 hover:text-white"
-          >
-            SKIP
-          </motion.button>
-        )}
+      {(phase === "landscape" ||
+        phase === "nameIn" ||
+        phase === "nameFill" ||
+        phase === "nameHold") && (
+        <motion.button
+          type="button"
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4 }}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleExit();
+          }}
+          className="absolute right-6 top-6 z-40 rounded-full border border-white/25 bg-black/40 px-4 py-1.5 text-[11px] font-light tracking-[0.25em] text-white/90 backdrop-blur-md transition-colors hover:border-white/60 hover:bg-black/60 hover:text-white"
+        >
+          SKIP
+        </motion.button>
+      )}
 
       {/* -------------------------------------------------------------------- */}
       {/* Compact Portrait + Bottom Pill "Click to Enter" (Matches Reference) */}
       {/* -------------------------------------------------------------------- */}
-      {phase === 'ready' && (
+      {phase === "ready" && (
         <motion.div
           className="absolute bottom-10 sm:bottom-14 md:bottom-16 left-1/3.5 -translate-x-1/2 z-50 flex flex-col items-center pointer-events-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.0, ease: 'easeOut' }}
+          transition={{ duration: 1.0, ease: "easeOut" }}
           onClick={(event) => event.stopPropagation()}
         >
           <motion.button
@@ -760,7 +740,7 @@ export default function Preloader({ onDone, onExitStart }: PreloaderProps) {
             }}
             className="mt-3.5 text-[10px] tracking-[0.3em] uppercase text-white/40 hover:text-white/80 transition-colors font-medium select-none cursor-pointer"
           >
-            {isScattered ? 'CLICK ANYWHERE TO REASSEMBLE' : 'OR CLICK ANYWHERE TO SCATTER'}
+            {isScattered ? "CLICK ANYWHERE TO REASSEMBLE" : "OR CLICK ANYWHERE TO SCATTER"}
           </button>
         </motion.div>
       )}

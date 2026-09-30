@@ -1,28 +1,28 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const stack = [
   {
-    category: 'Frontend',
-    tools: ['Angular', 'React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Redux', 'HTML5/CSS3'],
-    badgeColor: 'text-sky-400 border-sky-500/20 bg-sky-500/5',
+    category: "Frontend",
+    tools: ["Angular", "React", "Next.js", "TypeScript", "Tailwind CSS", "Redux", "HTML5/CSS3"],
+    badgeColor: "text-sky-400 border-sky-500/20 bg-sky-500/5",
   },
   {
-    category: 'Motion & Animation',
-    tools: ['GSAP', 'Framer Motion', 'Three.js', 'SVG Animation', 'Canvas APIs'],
-    badgeColor: 'text-amber-400 border-amber-500/20 bg-amber-500/5',
+    category: "Motion & Animation",
+    tools: ["GSAP", "Framer Motion", "Three.js", "SVG Animation", "Canvas APIs"],
+    badgeColor: "text-amber-400 border-amber-500/20 bg-amber-500/5",
   },
   {
-    category: 'Mobile App',
-    tools: ['React-native', 'Expo', 'Android', 'IOS'],
-    badgeColor: 'text-emerald-400 border-emerald-500/20 bg-emerald-500/5',
+    category: "Mobile App",
+    tools: ["React-native", "Expo", "Android", "IOS"],
+    badgeColor: "text-emerald-400 border-emerald-500/20 bg-emerald-500/5",
   },
   {
-    category: 'Other',
-    tools: ['Git/GitHub', 'Vercel', 'Figma', 'Canvas Confetti'],
-    badgeColor: 'text-purple-400 border-purple-500/20 bg-purple-500/5',
+    category: "Other",
+    tools: ["Git/GitHub", "Vercel", "Figma", "Canvas Confetti"],
+    badgeColor: "text-purple-400 border-purple-500/20 bg-purple-500/5",
   },
 ];
 
@@ -44,8 +44,8 @@ export default function TechStack() {
       setIsMobile(window.innerWidth < 768);
     };
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -53,9 +53,9 @@ export default function TechStack() {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 35, filter: 'blur(6px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: true, margin: '-80px' }}
+          initial={{ opacity: 0, y: 35, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-12 text-center"
         >
@@ -63,7 +63,11 @@ export default function TechStack() {
             TECHNICAL STACK
           </span>
           <h2 className="mx-auto mt-3 max-w-3xl font-display text-4xl font-bold tracking-tight text-white md:text-5xl">
-            The tools I use to <span className="underline decoration-amber-500 decoration-2 underline-offset-4">build</span> the future.
+            The tools I use to{" "}
+            <span className="underline decoration-amber-500 decoration-2 underline-offset-4">
+              build
+            </span>{" "}
+            the future.
           </h2>
         </motion.div>
 
@@ -80,7 +84,6 @@ export default function TechStack() {
           onClick={() => setIsOpen((prev) => !prev)}
         >
           <div className="relative flex items-center justify-center w-full h-full">
-
             {/* -------------------------------------------------------- */}
             {/* 1. Wallet Back Sleeve (Behind the cards, z-0)            */}
             {/* -------------------------------------------------------- */}
@@ -91,7 +94,7 @@ export default function TechStack() {
                 scale: isOpen ? 0.98 : 1,
               }}
               transition={{
-                type: 'spring',
+                type: "spring",
                 stiffness: 480,
                 damping: 30,
                 mass: 0.4,
@@ -140,8 +143,8 @@ export default function TechStack() {
                   key={s.category}
                   className={`absolute w-[154px] sm:w-56 h-[162px] sm:h-auto sm:aspect-square rounded-2xl border ${
                     hoveredCard === i
-                      ? 'border-amber-400/80 shadow-[0_0_25px_rgba(245,158,11,0.3)]'
-                      : 'border-white/10'
+                      ? "border-amber-400/80 shadow-[0_0_25px_rgba(245,158,11,0.3)]"
+                      : "border-white/10"
                   } bg-[#111] p-3 sm:p-5 flex flex-col justify-between shadow-[0_15px_35px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-all duration-300 select-none`}
                   style={{
                     zIndex: targetZIndex,
@@ -153,7 +156,7 @@ export default function TechStack() {
                     scale: targetScale,
                   }}
                   transition={{
-                    type: 'spring',
+                    type: "spring",
                     stiffness: 480,
                     damping: 30,
                     mass: 0.4,
@@ -206,7 +209,7 @@ export default function TechStack() {
                 scale: isOpen ? 0.98 : 1,
               }}
               transition={{
-                type: 'spring',
+                type: "spring",
                 stiffness: 480,
                 damping: 30,
                 mass: 0.4,
@@ -254,7 +257,6 @@ export default function TechStack() {
                 </span>
               </div>
             </motion.div>
-
           </div>
         </div>
       </div>

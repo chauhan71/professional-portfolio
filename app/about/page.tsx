@@ -1,56 +1,46 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import CustomCursor from '@/components/CustomCursor';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/sections/Footer';
-import TiltCard from '@/components/TiltCard';
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Sparkles,
-  Layers,
-  Code2,
-  Cpu,
-  Compass,
-  CheckCircle2,
-  ChevronRight,
-} from 'lucide-react';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import CustomCursor from "@/components/CustomCursor";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/sections/Footer";
+import { ArrowRight, ArrowUpRight, Sparkles, Layers, Code2 } from "lucide-react";
 
 const principles = [
   {
     icon: Code2,
-    title: 'Technical Rigor',
+    title: "Technical Rigor",
     description:
-      'Writing clean, modular, and type-safe code using modern React, Next.js, and TypeScript that is built to scale seamlessly.',
+      "Writing clean, modular, and type-safe code using modern React, Next.js, and TypeScript that is built to scale seamlessly.",
   },
   {
     icon: Sparkles,
-    title: 'Animation & Motion',
+    title: "Animation & Motion",
     description:
-      'Choreographing purposeful 60FPS physics-based micro-interactions that make software feel tactile, alive, and responsive.',
+      "Choreographing purposeful 60FPS physics-based micro-interactions that make software feel tactile, alive, and responsive.",
   },
   {
     icon: Layers,
-    title: 'Design System Architecture',
+    title: "Design System Architecture",
     description:
-      'Crafting scalable design tokens, accessible components, and consistent visual hierarchies across web and mobile platforms.',
+      "Crafting scalable design tokens, accessible components, and consistent visual hierarchies across web and mobile platforms.",
   },
 ];
 
 const highlights = [
-  { metric: '3+', label: 'Years of Experience' },
-  { metric: '20+', label: 'Shipped Projects' },
-  { metric: '100k+', label: 'Lines of Code Written' },
-  { metric: '99%', label: 'Performance & SEO Scores' },
+  { metric: "3+", label: "Years of Experience" },
+  { metric: "20+", label: "Shipped Projects" },
+  { metric: "100k+", label: "Lines of Code Written" },
+  { metric: "99%", label: "Performance & SEO Scores" },
 ];
 
 function FlipPortraitCard() {
   const [isFlipped, setIsFlipped] = useState(false);
   const [mouseTilt, setMouseTilt] = useState({ x: 0, y: 0 });
-  const [imgSrc, setImgSrc] = useState('/mypic.jpg');
+  const [imgSrc, setImgSrc] = useState("/mypic.jpg");
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -78,7 +68,7 @@ function FlipPortraitCard() {
     >
       <motion.div
         className="w-full h-full relative"
-        style={{ transformStyle: 'preserve-3d' }}
+        style={{ transformStyle: "preserve-3d" }}
         animate={{
           rotateY: isFlipped ? 180 : 0,
           rotateX: mouseTilt.x,
@@ -86,16 +76,16 @@ function FlipPortraitCard() {
         }}
         transition={{
           rotateY: { duration: 0.85, ease: [0.16, 1, 0.3, 1] },
-          rotateX: { duration: 0.15, ease: 'easeOut' },
-          rotateZ: { duration: 0.15, ease: 'easeOut' },
+          rotateX: { duration: 0.15, ease: "easeOut" },
+          rotateZ: { duration: 0.15, ease: "easeOut" },
         }}
       >
         {/* ================= FRONT FACE (Watermark Card) ================= */}
         <div
           className="absolute inset-0 rounded-[36px] overflow-hidden border border-white/10 shadow-[0_25px_70px_rgba(0,0,0,0.8)]"
           style={{
-            backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden',
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
           }}
         >
           {/* Multi-tone Deep Ambient Gradient */}
@@ -123,9 +113,7 @@ function FlipPortraitCard() {
             <span className="text-[11px] font-mono tracking-widest text-amber-400/80 uppercase font-semibold">
               Ritik Chauhan
             </span>
-            <span className="text-[10px] font-mono text-white/40 tracking-wider">
-              EST. 2023
-            </span>
+            <span className="text-[10px] font-mono text-white/40 tracking-wider">EST. 2023</span>
           </div>
 
           {/* Centered Large RITIK Watermark Text */}
@@ -133,8 +121,8 @@ function FlipPortraitCard() {
             <span
               className="font-sans font-black text-6xl sm:text-7xl md:text-8xl tracking-[0.12em] uppercase transition-all duration-700 group-hover:tracking-[0.18em] group-hover:scale-105"
               style={{
-                color: 'rgba(217, 119, 6, 0.25)',
-                textShadow: '0 0 40px rgba(245, 158, 11, 0.15)',
+                color: "rgba(217, 119, 6, 0.25)",
+                textShadow: "0 0 40px rgba(245, 158, 11, 0.15)",
               }}
             >
               RITIK
@@ -150,17 +138,20 @@ function FlipPortraitCard() {
         <div
           className="absolute inset-0 rounded-[36px] overflow-hidden border border-amber-500/30 shadow-[0_25px_80px_rgba(245,158,11,0.25)] bg-[#0c0c0e]"
           style={{
-            backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)',
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
           }}
         >
           {/* Portrait Image with crisp fit */}
           <div className="relative w-full h-full">
-            <img
+            <Image
               src={imgSrc}
-              onError={() => setImgSrc('/my pic.jpeg')}
+              onError={() => setImgSrc("/my pic.jpeg")}
               alt="Ritik Chauhan - Creative Developer Portrait"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 520px"
               className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
             />
 
@@ -228,10 +219,9 @@ export default function AboutPage() {
 
               {/* Subtitle / Paragraph */}
               <p className="mt-8 max-w-xl text-base sm:text-lg leading-relaxed text-neutral-400 font-normal">
-                I thrive on turning complex problems into elegant, motion-rich
-                digital solutions. My approach combines technical precision with a
-                deep eye for aesthetics, ensuring every project is as functional as
-                it is stunning.
+                I thrive on turning complex problems into elegant, motion-rich digital solutions. My
+                approach combines technical precision with a deep eye for aesthetics, ensuring every
+                project is as functional as it is stunning.
               </p>
 
               {/* Quick Actions */}
@@ -257,7 +247,11 @@ export default function AboutPage() {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.15, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                delay: 0.15,
+                duration: 0.9,
+                ease: [0.16, 1, 0.3, 1],
+              }}
               className="lg:col-span-5 flex justify-center"
             >
               <FlipPortraitCard />
@@ -302,8 +296,8 @@ export default function AboutPage() {
               Principles that guide my craft.
             </h2>
             <p className="mt-4 text-neutral-400 text-sm sm:text-base">
-              Great software is an intersection of ruthless technical efficiency
-              and emotive, tactile design.
+              Great software is an intersection of ruthless technical efficiency and emotive,
+              tactile design.
             </p>
           </div>
 
@@ -322,9 +316,7 @@ export default function AboutPage() {
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-400 transition-colors group-hover:bg-amber-500 group-hover:text-black">
                     <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className="mt-6 text-xl font-bold text-white">
-                    {principle.title}
-                  </h3>
+                  <h3 className="mt-6 text-xl font-bold text-white">{principle.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-neutral-400">
                     {principle.description}
                   </p>
@@ -351,8 +343,8 @@ export default function AboutPage() {
               </h3>
 
               <p className="mt-4 text-sm sm:text-base text-neutral-400">
-                Have a new project or looking to scale your engineering team?
-                I&apos;m currently available for select freelance and full-time opportunities.
+                Have a new project or looking to scale your engineering team? I&apos;m currently
+                available for select freelance and full-time opportunities.
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">

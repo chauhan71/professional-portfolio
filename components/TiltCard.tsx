@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useRef, useState, ReactNode } from 'react';
+import { useRef, useState, ReactNode } from "react";
 
 interface TiltCardProps {
   children: ReactNode;
@@ -8,7 +8,7 @@ interface TiltCardProps {
   maxTilt?: number;
 }
 
-export default function TiltCard({ children, className = '', maxTilt = 8 }: TiltCardProps) {
+export default function TiltCard({ children, className = "", maxTilt = 8 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [style, setStyle] = useState<React.CSSProperties>({});
   const [glow, setGlow] = useState({ x: 50, y: 50, visible: false });
@@ -31,7 +31,7 @@ export default function TiltCard({ children, className = '', maxTilt = 8 }: Tilt
   };
 
   const handleMouseLeave = () => {
-    setStyle({ transform: 'perspective(1000px) rotateX(0) rotateY(0) scale(1)' });
+    setStyle({ transform: "perspective(1000px) rotateX(0) rotateY(0) scale(1)" });
     setGlow((g) => ({ ...g, visible: false }));
   };
 

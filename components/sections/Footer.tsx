@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
-import { Mail, Linkedin, MapPin, Github, Twitter, Instagram } from 'lucide-react';
+import { motion } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { Mail, Linkedin, MapPin, Github, Twitter, Instagram } from "lucide-react";
 
 export default function Footer() {
   const watermarkRef = useRef<HTMLDivElement>(null);
@@ -16,21 +16,23 @@ export default function Footer() {
       const rect = el.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      el.style.setProperty('--torch-x', `${x}px`);
-      el.style.setProperty('--torch-y', `${y}px`);
+      el.style.setProperty("--torch-x", `${x}px`);
+      el.style.setProperty("--torch-y", `${y}px`);
     };
 
-    el.addEventListener('mousemove', handleMouseMove, { passive: true });
+    el.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => {
-      el.removeEventListener('mousemove', handleMouseMove);
+      el.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
   return (
-    <footer id="contact" className="relative overflow-hidden px-6 pt-24 md:px-8 md:pt-32 bg-[#0a0a0a]">
+    <footer
+      id="contact"
+      className="relative overflow-hidden px-6 pt-24 md:px-8 md:pt-32 bg-[#0a0a0a]"
+    >
       <div className="relative z-10 mx-auto max-w-5xl">
         {/* Top "Let's talk" pill button (Matches Image 1) */}
-
 
         {/* CTA (Matches Image 2) */}
         <motion.div
@@ -46,7 +48,8 @@ export default function Footer() {
 
           {/* Clean Crisp Heading */}
           <h2 className="mt-5 font-sans text-3xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-tight sm:leading-[1.05]">
-            Ready to bring your ideas<br className="hidden sm:inline" /> to life?
+            Ready to bring your ideas
+            <br className="hidden sm:inline" /> to life?
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl text-sm sm:text-base text-neutral-400 leading-relaxed">
@@ -127,10 +130,10 @@ export default function Footer() {
           className="mt-12 flex items-center justify-center gap-4"
         >
           {[
-            { icon: Github, label: 'GitHub', href: 'https://github.com' },
-            { icon: Twitter, label: 'Twitter', href: 'https://twitter.com' },
-            { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com' },
-            { icon: Instagram, label: 'Instagram', href: 'https://instagram.com' },
+            { icon: Github, label: "GitHub", href: "https://github.com" },
+            { icon: Twitter, label: "Twitter", href: "https://twitter.com" },
+            { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
+            { icon: Instagram, label: "Instagram", href: "https://instagram.com" },
           ].map(({ icon: Icon, label, href }) => (
             <a
               key={label}
@@ -160,14 +163,14 @@ export default function Footer() {
         <div
           className="relative flex items-center justify-center w-full will-change-transform group-hover:[animation-play-state:paused]"
           style={{
-            animation: 'float-y 4s ease-in-out infinite',
-            animationPlayState: isHovered ? 'paused' : 'running',
+            animation: "float-y 4s ease-in-out infinite",
+            animationPlayState: isHovered ? "paused" : "running",
           }}
         >
           {/* Base Layer: Dark Striped Horizontal Scanlines */}
           <span
             className="font-display text-[26vw] md:text-[20vw] font-black tracking-widest leading-none select-none watermark-scanlines"
-            style={{ color: 'rgba(255, 255, 255, 0.12)' }}
+            style={{ color: "rgba(255, 255, 255, 0.12)" }}
           >
             RITIK
           </span>
@@ -175,15 +178,16 @@ export default function Footer() {
           {/* Illuminated Layer: Glowing Scanlines Revealed by Torch */}
           <span
             aria-hidden
-            className={`pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[26vw] md:text-[20vw] font-black tracking-widest leading-none select-none watermark-scanlines transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'
-              }`}
+            className={`pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[26vw] md:text-[20vw] font-black tracking-widest leading-none select-none watermark-scanlines transition-opacity duration-300 ${
+              isHovered ? "opacity-100" : "opacity-0"
+            }`}
             style={{
-              color: '#ffffff',
-              filter: 'drop-shadow(0 0 20px rgba(245, 158, 11, 0.8))',
+              color: "#ffffff",
+              filter: "drop-shadow(0 0 20px rgba(245, 158, 11, 0.8))",
               WebkitMaskImage:
-                'radial-gradient(circle 240px at var(--torch-x, -999px) var(--torch-y, -999px), black 30%, rgba(0,0,0,0.5) 60%, transparent 100%)',
+                "radial-gradient(circle 240px at var(--torch-x, -999px) var(--torch-y, -999px), black 30%, rgba(0,0,0,0.5) 60%, transparent 100%)",
               maskImage:
-                'radial-gradient(circle 240px at var(--torch-x, -999px) var(--torch-y, -999px), black 30%, rgba(0,0,0,0.5) 60%, transparent 100%)',
+                "radial-gradient(circle 240px at var(--torch-x, -999px) var(--torch-y, -999px), black 30%, rgba(0,0,0,0.5) 60%, transparent 100%)",
             }}
           >
             RITIK
@@ -192,36 +196,39 @@ export default function Footer() {
 
         {/* Downward Light Cone Beam (from Torch to Floor) */}
         <div
-          className={`pointer-events-none absolute inset-0 transition-opacity duration-200 ${isHovered ? 'opacity-100' : 'opacity-0'
-            }`}
+          className={`pointer-events-none absolute inset-0 transition-opacity duration-200 ${
+            isHovered ? "opacity-100" : "opacity-0"
+          }`}
           style={{
             clipPath:
-              'polygon(var(--torch-x, -999px) var(--torch-y, -999px), calc(var(--torch-x, -999px) - 170px) 100%, calc(var(--torch-x, -999px) + 170px) 100%)',
+              "polygon(var(--torch-x, -999px) var(--torch-y, -999px), calc(var(--torch-x, -999px) - 170px) 100%, calc(var(--torch-x, -999px) + 170px) 100%)",
             background:
-              'linear-gradient(to bottom, rgba(245, 158, 11, 0.42) 0%, rgba(217, 119, 6, 0.2) 45%, rgba(245, 158, 11, 0.02) 100%)',
+              "linear-gradient(to bottom, rgba(245, 158, 11, 0.42) 0%, rgba(217, 119, 6, 0.2) 45%, rgba(245, 158, 11, 0.02) 100%)",
           }}
           aria-hidden
         />
 
         {/* Radial Ambient Torch Halo */}
         <div
-          className={`pointer-events-none absolute inset-0 transition-opacity duration-200 ${isHovered ? 'opacity-100' : 'opacity-0'
-            }`}
+          className={`pointer-events-none absolute inset-0 transition-opacity duration-200 ${
+            isHovered ? "opacity-100" : "opacity-0"
+          }`}
           style={{
             background:
-              'radial-gradient(circle 240px at var(--torch-x, -999px) var(--torch-y, -999px), rgba(245, 158, 11, 0.38) 0%, rgba(217, 119, 6, 0.16) 40%, rgba(245, 158, 11, 0.03) 70%, transparent 100%)',
+              "radial-gradient(circle 240px at var(--torch-x, -999px) var(--torch-y, -999px), rgba(245, 158, 11, 0.38) 0%, rgba(217, 119, 6, 0.16) 40%, rgba(245, 158, 11, 0.03) 70%, transparent 100%)",
           }}
           aria-hidden
         />
 
         {/* The Torch Graphic Attached to Cursor */}
         <div
-          className={`pointer-events-none absolute left-0 top-0 z-40 transition-opacity duration-150 ${isHovered ? 'opacity-100' : 'opacity-0'
-            }`}
+          className={`pointer-events-none absolute left-0 top-0 z-40 transition-opacity duration-150 ${
+            isHovered ? "opacity-100" : "opacity-0"
+          }`}
           style={{
             transform:
-              'translate3d(var(--torch-x, -999px), var(--torch-y, -999px), 0) translate(-50%, -50%)',
-            willChange: 'transform',
+              "translate3d(var(--torch-x, -999px), var(--torch-y, -999px), 0) translate(-50%, -50%)",
+            willChange: "transform",
           }}
           aria-hidden
         >
@@ -233,7 +240,7 @@ export default function Footer() {
                 className="w-4 h-6 rounded-t-full rounded-b-sm bg-gradient-to-t from-amber-500 via-amber-200 to-white"
                 style={{
                   boxShadow:
-                    '0 0 12px 3px #ffffff, 0 0 24px 8px #f59e0b, 0 -12px 32px 10px rgba(251, 191, 36, 0.65)',
+                    "0 0 12px 3px #ffffff, 0 0 24px 8px #f59e0b, 0 -12px 32px 10px rgba(251, 191, 36, 0.65)",
                 }}
               />
             </div>
@@ -254,11 +261,12 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="relative z-10 mx-auto max-w-7xl border-t border-neutral-800/80 py-8 flex flex-col items-center justify-between gap-4 md:flex-row">
-        <p className="text-xs text-neutral-500">
-          RC © 2026 Ritik Chauhan. All rights reserved.
-        </p>
+        <p className="text-xs text-neutral-500">RC © 2026 Ritik Chauhan. All rights reserved.</p>
         <div className="flex items-center gap-6 text-xs text-neutral-500">
-          <a href="mailto:ritikchauhan@gmail.com" className="transition-colors hover:text-amber-500">
+          <a
+            href="mailto:ritikchauhan@gmail.com"
+            className="transition-colors hover:text-amber-500"
+          >
             ritikchauhan@gmail.com
           </a>
           <span className="text-neutral-700">|</span>

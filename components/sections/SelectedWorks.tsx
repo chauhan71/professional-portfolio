@@ -1,37 +1,38 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { ArrowUpRight, ArrowRight } from 'lucide-react';
-import TiltCard from '@/components/TiltCard';
+import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
+import TiltCard from "@/components/TiltCard";
 
 const projects = [
   {
-    title: 'UI Pirate',
+    title: "UI Pirate",
     description:
-      'A modern portfolio/SaaS product template built with Next.js, Tailwind CSS, and Framer Motion.',
-    tag: 'Template',
+      "A modern portfolio/SaaS product template built with Next.js, Tailwind CSS, and Framer Motion.",
+    tag: "Template",
     image:
-      'https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=800',
-    link: 'https://uipirate.com/',
+      "https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=800",
+    link: "https://uipirate.com/",
     isExternal: true,
   },
   {
-    title: 'UI Pirate',
+    title: "UI Pirate",
     description:
-      'A comprehensive, accessible UI system and component library engineered for modern web apps with dark mode and micro-interactions.',
-    tag: 'UI System',
-    image: '/uipirate_ui_system.jpg',
-    link: 'https://uipirate.com/componentlab/tactile-pill-button',
+      "A comprehensive, accessible UI system and component library engineered for modern web apps with dark mode and micro-interactions.",
+    tag: "UI System",
+    image: "/uipirate_ui_system.jpg",
+    link: "https://uipirate.com/componentlab/tactile-pill-button",
     isExternal: true,
   },
   {
-    title: 'Camporaone',
+    title: "Camporaone",
     description:
-      'Next-generation smart school management & learning mobile app connecting teachers, students, and parents seamlessly.',
-    tag: 'EdTech App',
-    image: '/evoskool_mobile.jpg',
-    link: '/work#camporaone',
+      "Next-generation smart school management & learning mobile app connecting teachers, students, and parents seamlessly.",
+    tag: "EdTech App",
+    image: "/evoskool_mobile.jpg",
+    link: "/work#camporaone",
     isExternal: false,
   },
 ];
@@ -42,11 +43,11 @@ const container = {
 };
 
 const item = {
-  hidden: { opacity: 0, y: 35, filter: 'blur(6px)' },
+  hidden: { opacity: 0, y: 35, filter: "blur(6px)" },
   show: {
     opacity: 1,
     y: 0,
-    filter: 'blur(0px)',
+    filter: "blur(0px)",
     transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
   },
 };
@@ -57,9 +58,9 @@ export default function SelectedWorks() {
       <div className="mx-auto max-w-7xl">
         {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 35, filter: 'blur(6px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: true, margin: '-80px' }}
+          initial={{ opacity: 0, y: 35, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end"
         >
@@ -85,17 +86,19 @@ export default function SelectedWorks() {
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: '-80px' }}
+          viewport={{ once: true, margin: "-80px" }}
           className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
         >
           {projects.map((project) => (
-            <motion.div key={project.title} variants={item}>
+            <motion.div key={`${project.title}-${project.tag}`} variants={item}>
               <TiltCard className="group h-full overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50">
                 {/* Preview */}
                 <div className="relative aspect-[16/10] overflow-hidden border-b border-neutral-800">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="h-full w-full object-cover opacity-60 transition-all duration-500 group-hover:scale-105 group-hover:opacity-80"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent" />
@@ -106,9 +109,7 @@ export default function SelectedWorks() {
 
                 {/* Content */}
                 <div className="p-6">
-                  <h3 className="font-display text-xl font-bold text-white">
-                    {project.title}
-                  </h3>
+                  <h3 className="font-display text-xl font-bold text-white">{project.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-neutral-400">
                     {project.description}
                   </p>

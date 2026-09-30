@@ -1,9 +1,8 @@
-'use client';
+"use client";
 
-import { useRef, useState, useCallback } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { useRef, useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 interface HeroProps {
   isRevealed?: boolean;
@@ -23,8 +22,8 @@ export default function Hero({ isRevealed = true }: HeroProps) {
     const y = e.clientY - rect.top;
 
     if (glowRef.current) {
-      glowRef.current.style.setProperty('--btn-x', `${x}px`);
-      glowRef.current.style.setProperty('--btn-y', `${y}px`);
+      glowRef.current.style.setProperty("--btn-x", `${x}px`);
+      glowRef.current.style.setProperty("--btn-y", `${y}px`);
     }
 
     if (torchRef.current) {
@@ -35,14 +34,14 @@ export default function Hero({ isRevealed = true }: HeroProps) {
 
   const handleMouseEnter = useCallback(() => {
     setIsBtnHovered(true);
-    if (glowRef.current) glowRef.current.style.opacity = '1';
-    if (torchRef.current) torchRef.current.style.opacity = '1';
+    if (glowRef.current) glowRef.current.style.opacity = "1";
+    if (torchRef.current) torchRef.current.style.opacity = "1";
   }, []);
 
   const handleMouseLeave = useCallback(() => {
     setIsBtnHovered(false);
-    if (glowRef.current) glowRef.current.style.opacity = '0';
-    if (torchRef.current) torchRef.current.style.opacity = '0';
+    if (glowRef.current) glowRef.current.style.opacity = "0";
+    if (torchRef.current) torchRef.current.style.opacity = "0";
   }, []);
 
   return (
@@ -94,11 +93,11 @@ export default function Hero({ isRevealed = true }: HeroProps) {
             className="text-[clamp(2.35rem,8.8vw,7.8rem)] font-medium leading-[1.04] md:leading-[0.94] tracking-[-0.025em] text-white"
           >
             <span className="block overflow-hidden">
-              <span className="inline-block text-amber-400">Ritik</span>{' '}
+              <span className="inline-block text-amber-400">Ritik</span>{" "}
               <span className="inline-block text-white">Chauhan.</span>
             </span>
             <span className="block overflow-hidden mt-1 md:mt-2">
-              <span className="inline-block text-amber-400">Creative</span>{' '}
+              <span className="inline-block text-amber-400">Creative</span>{" "}
               <span className="inline-block text-white">Developer.</span>
             </span>
           </motion.h1>
@@ -111,7 +110,8 @@ export default function Hero({ isRevealed = true }: HeroProps) {
           transition={{ delay: 0.25, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-xl text-base sm:text-lg text-white/70 leading-relaxed mb-8 md:mb-10 font-normal"
         >
-          I craft premium, animation-rich web experiences that feel tactile, intentional, and effortless — from initial concept to production-ready code.
+          I craft premium, animation-rich web experiences that feel tactile, intentional, and
+          effortless — from initial concept to production-ready code.
         </motion.p>
 
         {/* Button Group (Left-Aligned) */}
@@ -125,34 +125,36 @@ export default function Hero({ isRevealed = true }: HeroProps) {
           <div className="relative inline-block">
             <button
               ref={btnRef}
-              onClick={() => router.push('/work')}
+              onClick={() => router.push("/work")}
               onMouseMove={handleMouseMove}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
               className="group relative inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 font-medium rounded-full text-xs md:text-sm tracking-wide overflow-visible transition-all duration-300 hover:scale-105"
               style={{
                 background: isBtnHovered
-                  ? 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)'
-                  : '#1a1a1a',
+                  ? "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)"
+                  : "#1a1a1a",
                 border: isBtnHovered
-                  ? '1px solid rgba(251, 191, 36, 0.6)'
-                  : '1px solid rgba(255, 255, 255, 0.2)',
-                color: isBtnHovered ? '#fbbf24' : 'white',
+                  ? "1px solid rgba(251, 191, 36, 0.6)"
+                  : "1px solid rgba(255, 255, 255, 0.2)",
+                color: isBtnHovered ? "#fbbf24" : "white",
                 boxShadow: isBtnHovered
-                  ? '0 0 30px rgba(251, 191, 36, 0.3), 0 0 60px rgba(251, 191, 36, 0.15)'
-                  : 'none',
+                  ? "0 0 30px rgba(251, 191, 36, 0.3), 0 0 60px rgba(251, 191, 36, 0.15)"
+                  : "none",
               }}
             >
               <div
                 ref={glowRef}
                 className="absolute inset-0 pointer-events-none rounded-full transition-opacity duration-300"
-                style={{
-                  opacity: 0,
-                  '--btn-x': '50%',
-                  '--btn-y': '50%',
-                  background:
-                    'radial-gradient(circle 100px at var(--btn-x) var(--btn-y), rgba(251, 191, 36, 0.6) 0%, rgba(251, 191, 36, 0.2) 40%, transparent 80%)',
-                } as React.CSSProperties}
+                style={
+                  {
+                    opacity: 0,
+                    "--btn-x": "50%",
+                    "--btn-y": "50%",
+                    background:
+                      "radial-gradient(circle 100px at var(--btn-x) var(--btn-y), rgba(251, 191, 36, 0.6) 0%, rgba(251, 191, 36, 0.2) 40%, transparent 80%)",
+                  } as React.CSSProperties
+                }
               />
               <span className="relative z-10">Explore work</span>
             </button>
@@ -161,27 +163,63 @@ export default function Hero({ isRevealed = true }: HeroProps) {
             <div
               ref={torchRef}
               className="absolute pointer-events-none z-30 transition-opacity duration-200"
-              style={{ opacity: 0, transform: 'translate(-50%, -100%)' }}
+              style={{ opacity: 0, transform: "translate(-50%, -100%)" }}
             >
-              <svg width="24" height="36" viewBox="0 0 40 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg
+                width="24"
+                height="36"
+                viewBox="0 0 40 60"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <rect x="15" y="25" width="10" height="30" rx="2" fill="url(#heroBtnTorchHandle)" />
                 <path d="M8 25 L32 25 L28 10 L12 10 Z" fill="url(#heroBtnTorchHead)" />
                 <ellipse cx="20" cy="8" rx="8" ry="6" fill="url(#heroBtnFlameGlow)" />
-                <path d="M20 0 C20 0 26 6 26 10 C26 14 23 16 20 16 C17 16 14 14 14 10 C14 6 20 0 20 0Z" fill="url(#heroBtnFlame)" />
+                <path
+                  d="M20 0 C20 0 26 6 26 10 C26 14 23 16 20 16 C17 16 14 14 14 10 C14 6 20 0 20 0Z"
+                  fill="url(#heroBtnFlame)"
+                />
                 <defs>
-                  <linearGradient id="heroBtnTorchHandle" x1="20" y1="25" x2="20" y2="55" gradientUnits="userSpaceOnUse">
+                  <linearGradient
+                    id="heroBtnTorchHandle"
+                    x1="20"
+                    y1="25"
+                    x2="20"
+                    y2="55"
+                    gradientUnits="userSpaceOnUse"
+                  >
                     <stop stopColor="#8B4513" />
                     <stop offset="1" stopColor="#5D3A1A" />
                   </linearGradient>
-                  <linearGradient id="heroBtnTorchHead" x1="20" y1="10" x2="20" y2="25" gradientUnits="userSpaceOnUse">
+                  <linearGradient
+                    id="heroBtnTorchHead"
+                    x1="20"
+                    y1="10"
+                    x2="20"
+                    y2="25"
+                    gradientUnits="userSpaceOnUse"
+                  >
                     <stop stopColor="#CD853F" />
                     <stop offset="1" stopColor="#8B4513" />
                   </linearGradient>
-                  <radialGradient id="heroBtnFlameGlow" cx="20" cy="8" r="8" gradientUnits="userSpaceOnUse">
+                  <radialGradient
+                    id="heroBtnFlameGlow"
+                    cx="20"
+                    cy="8"
+                    r="8"
+                    gradientUnits="userSpaceOnUse"
+                  >
                     <stop stopColor="rgba(255, 200, 100, 0.8)" />
                     <stop offset="1" stopColor="rgba(255, 150, 50, 0)" />
                   </radialGradient>
-                  <linearGradient id="heroBtnFlame" x1="20" y1="0" x2="20" y2="16" gradientUnits="userSpaceOnUse">
+                  <linearGradient
+                    id="heroBtnFlame"
+                    x1="20"
+                    y1="0"
+                    x2="20"
+                    y2="16"
+                    gradientUnits="userSpaceOnUse"
+                  >
                     <stop stopColor="#FFF4E0" />
                     <stop offset="0.3" stopColor="#FFD700" />
                     <stop offset="0.7" stopColor="#FF8C00" />
@@ -194,7 +232,7 @@ export default function Hero({ isRevealed = true }: HeroProps) {
 
           {/* 2. Services Button */}
           <button
-            onClick={() => router.push('/#skills')}
+            onClick={() => router.push("/#skills")}
             className="px-6 py-3 md:px-8 md:py-4 border border-white/30 text-white font-medium rounded-full text-xs md:text-sm tracking-wide hover:bg-white/10 hover:border-white/50 transition-all duration-300"
           >
             Services
@@ -202,7 +240,7 @@ export default function Hero({ isRevealed = true }: HeroProps) {
 
           {/* 3. Get In Touch Button */}
           <button
-            onClick={() => router.push('/contact')}
+            onClick={() => router.push("/contact")}
             className="px-4 py-3 md:px-6 md:py-4 text-white/60 text-xs md:text-sm tracking-wide hover:text-white transition-colors duration-300"
           >
             Get in touch

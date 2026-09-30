@@ -1,34 +1,34 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { Quote, ArrowRight } from 'lucide-react';
+import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { Quote, ArrowRight } from "lucide-react";
 
 const testimonials = [
   {
-    name: 'Albert Misano',
-    role: 'Founder of The Misano',
-    text: 'We had a fantastic experience partnering with Ritik for our website. The communication and collaboration were excellent, and the final product exceeded all our expectations. His attention to detail and creative approach truly set him apart.',
+    name: "Albert Misano",
+    role: "Founder of The Misano",
+    text: "We had a fantastic experience partnering with Ritik for our website. The communication and collaboration were excellent, and the final product exceeded all our expectations. His attention to detail and creative approach truly set him apart.",
   },
   {
-    name: 'Stephen Dash',
-    role: 'Founder & CEO of Credible',
-    text: 'Ritik is extremely reliable, professional and talented. It has been a great pleasure collaborating with him on multiple projects. His ability to translate design vision into flawless code is remarkable.',
+    name: "Stephen Dash",
+    role: "Founder & CEO of Credible",
+    text: "Ritik is extremely reliable, professional and talented. It has been a great pleasure collaborating with him on multiple projects. His ability to translate design vision into flawless code is remarkable.",
   },
   {
-    name: 'Zoltan Csereko',
-    role: 'Founder & CEO of Ventigence',
+    name: "Zoltan Csereko",
+    role: "Founder & CEO of Ventigence",
     text: "Ritik's creative vision and technical expertise helped us transform our digital presence. The animations and interactions he built gave our product a truly premium feel that our users love.",
   },
   {
-    name: 'Elena Rostova',
-    role: 'Head of Product at Horizon AI',
-    text: 'Working with Ritik was an absolute game changer. His attention to detail, performance optimization, and creative motion design took our digital product to a whole new level.',
+    name: "Elena Rostova",
+    role: "Head of Product at Horizon AI",
+    text: "Working with Ritik was an absolute game changer. His attention to detail, performance optimization, and creative motion design took our digital product to a whole new level.",
   },
   {
-    name: 'Marcus Vance',
-    role: 'Design Director at Atelier',
-    text: 'Ritik has a rare talent for bridging high-concept interaction design with clean, production-ready code. Delivered ahead of schedule with immaculate craftsmanship.',
+    name: "Marcus Vance",
+    role: "Design Director at Atelier",
+    text: "Ritik has a rare talent for bridging high-concept interaction design with clean, production-ready code. Delivered ahead of schedule with immaculate craftsmanship.",
   },
 ];
 
@@ -58,8 +58,8 @@ export default function Testimonials() {
     };
 
     calcBounds();
-    window.addEventListener('resize', calcBounds);
-    return () => window.removeEventListener('resize', calcBounds);
+    window.addEventListener("resize", calcBounds);
+    return () => window.removeEventListener("resize", calcBounds);
   }, []);
 
   return (
@@ -82,9 +82,9 @@ export default function Testimonials() {
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 35, filter: 'blur(6px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: true, margin: '-80px' }}
+          initial={{ opacity: 0, y: 35, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-14 text-center md:text-left"
         >
@@ -98,10 +98,7 @@ export default function Testimonials() {
       </div>
 
       {/* Testimonials Stage */}
-      <div
-        ref={containerRef}
-        className="relative w-full overflow-hidden py-4 flex justify-center"
-      >
+      <div ref={containerRef} className="relative w-full overflow-hidden py-4 flex justify-center">
         {/* Left and Right Vignette Fade Masks */}
         <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-28 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-28 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10" />
@@ -114,10 +111,10 @@ export default function Testimonials() {
           onTouchStart={() => setIsPaused(true)}
           onTouchEnd={() => setIsPaused(false)}
           style={{
-            ['--start-x' as any]: `${bounds.startX}px`,
-            ['--end-x' as any]: `${bounds.endX}px`,
-            animation: `pingPongMotion ${isMobile ? '38s' : '14s'} ease-in-out infinite alternate`,
-            animationPlayState: isPaused ? 'paused' : 'running',
+            ["--start-x" as any]: `${bounds.startX}px`,
+            ["--end-x" as any]: `${bounds.endX}px`,
+            animation: `pingPongMotion ${isMobile ? "38s" : "14s"} ease-in-out infinite alternate`,
+            animationPlayState: isPaused ? "paused" : "running",
           }}
         >
           {testimonials.map((t) => (
@@ -144,9 +141,9 @@ export default function Testimonials() {
               <div className="flex items-center gap-3.5 border-t border-white/5 pt-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-neutral-800 to-neutral-900 font-display text-xs font-bold text-amber-400 shadow-inner group-hover:border-amber-500/30">
                   {t.name
-                    .split(' ')
+                    .split(" ")
                     .map((n) => n[0])
-                    .join('')}
+                    .join("")}
                 </div>
                 <div className="min-w-0">
                   <p className="truncate text-sm font-semibold text-white tracking-tight">

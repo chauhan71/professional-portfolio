@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import Link from "next/link";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { label: 'Work', href: '/#work' },
-  { label: 'About', href: '/#about' },
-  { label: 'Skills', href: '/#skills' },
-  { label: 'Reviews', href: '/#reviews' },
+  { label: "Work", href: "/#work" },
+  { label: "About", href: "/#about" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Reviews", href: "/#reviews" },
 ];
 
 interface NavbarProps {
@@ -19,12 +19,12 @@ export default function Navbar({ isRevealed = true }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleContactClick = (e: React.MouseEvent) => {
-    if (typeof window !== 'undefined' && window.location.pathname === '/') {
+    if (typeof window !== "undefined" && window.location.pathname === "/") {
       e.preventDefault();
-      const el = document.getElementById('contact');
+      const el = document.getElementById("contact");
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-        window.history.pushState(null, '', '/#contact');
+        el.scrollIntoView({ behavior: "smooth" });
+        window.history.pushState(null, "", "/#contact");
       }
     }
   };
@@ -36,16 +36,16 @@ export default function Navbar({ isRevealed = true }: NavbarProps) {
           className="flex items-center justify-between"
           initial={{ opacity: 0, y: -20 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           {/* Left: Avatar + Name (Single line) -> Scrolls / Routes back to Hero */}
           <Link
             href="/#hero"
             onClick={(e) => {
-              if (typeof window !== 'undefined' && window.location.pathname === '/') {
+              if (typeof window !== "undefined" && window.location.pathname === "/") {
                 e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                window.history.pushState(null, '', '/#hero');
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                window.history.pushState(null, "", "/#hero");
               }
             }}
             className="flex items-center gap-3 group"
@@ -89,9 +89,19 @@ export default function Navbar({ isRevealed = true }: NavbarProps) {
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               )}
             </svg>
           </button>
@@ -103,7 +113,7 @@ export default function Navbar({ isRevealed = true }: NavbarProps) {
             <motion.div
               className="md:hidden mt-4 py-6 border-t border-white/10 flex flex-col gap-5"
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
             >

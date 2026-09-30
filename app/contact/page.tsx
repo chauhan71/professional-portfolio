@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import CustomCursor from '@/components/CustomCursor';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/sections/Footer';
-import { Mail, Linkedin, MapPin, Github, Twitter, Instagram } from 'lucide-react';
+import { motion } from "framer-motion";
+import CustomCursor from "@/components/CustomCursor";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/sections/Footer";
+import { Mail, Linkedin, MapPin, Github, Twitter, Instagram } from "lucide-react";
 
 export default function ContactPage() {
   return (
@@ -31,7 +31,8 @@ export default function ContactPage() {
 
             {/* Main Headline */}
             <h1 className="mt-5 font-sans text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.05]">
-              Ready to bring your ideas<br className="hidden sm:inline" /> to life?
+              Ready to bring your ideas
+              <br className="hidden sm:inline" /> to life?
             </h1>
 
             {/* Subtext */}
@@ -99,10 +100,10 @@ export default function ContactPage() {
             className="mt-12 flex items-center justify-center gap-4"
           >
             {[
-              { icon: Github, label: 'GitHub', href: 'https://github.com' },
-              { icon: Twitter, label: 'Twitter', href: 'https://twitter.com' },
-              { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com' },
-              { icon: Instagram, label: 'Instagram', href: 'https://instagram.com' },
+              { icon: Github, label: "GitHub", href: "https://github.com" },
+              { icon: Twitter, label: "Twitter", href: "https://twitter.com" },
+              { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
+              { icon: Instagram, label: "Instagram", href: "https://instagram.com" },
             ].map(({ icon: Icon, label, href }) => (
               <a
                 key={label}

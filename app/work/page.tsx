@@ -1,35 +1,29 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
-import CustomCursor from '@/components/CustomCursor';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/sections/Footer';
-import TiltCard from '@/components/TiltCard';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import CustomCursor from "@/components/CustomCursor";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/sections/Footer";
+import TiltCard from "@/components/TiltCard";
 import {
   ArrowUpRight,
   ArrowRight,
-  Sparkles,
-  Layers,
-  Globe,
-  Smartphone,
   CheckCircle2,
   Clock,
-  Lock,
   ExternalLink,
   ChevronRight,
-  ShieldCheck,
-  Zap,
-} from 'lucide-react';
+} from "lucide-react";
 
 interface Project {
   id: string;
   title: string;
-  category: 'all' | 'website' | 'uisystem' | 'mobile';
+  category: "all" | "website" | "uisystem" | "mobile";
   tag: string;
   badge: string;
-  badgeType: 'live' | 'stealth';
+  badgeType: "live" | "stealth";
   subtitle: string;
   description: string;
   longDescription: string;
@@ -46,114 +40,120 @@ interface Project {
 
 const projects: Project[] = [
   {
-    id: 'uipirate-web',
-    title: 'UI Pirate',
-    category: 'website',
-    tag: 'Web Platform & SaaS',
-    badge: 'Live Platform',
-    badgeType: 'live',
-    subtitle: 'Modern High-Converting SaaS & Template Web Platform',
+    id: "uipirate-web",
+    title: "UI Pirate",
+    category: "website",
+    tag: "Web Platform & SaaS",
+    badge: "Live Platform",
+    badgeType: "live",
+    subtitle: "Modern High-Converting SaaS & Template Web Platform",
     description:
-      'A modern portfolio/SaaS product template and web platform built with Next.js, Tailwind CSS, and Framer Motion.',
+      "A modern portfolio/SaaS product template and web platform built with Next.js, Tailwind CSS, and Framer Motion.",
     longDescription:
-      'UI Pirate is engineered for creators and product founders who demand conversion-optimized architecture with unapologetically sleek dark aesthetics. Featuring fluid micro-interactions, responsive grid layouts, and high-performance rendering.',
+      "UI Pirate is engineered for creators and product founders who demand conversion-optimized architecture with unapologetically sleek dark aesthetics. Featuring fluid micro-interactions, responsive grid layouts, and high-performance rendering.",
     image:
-      'https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=800',
-    link: 'https://uipirate.com/',
-    linkLabel: 'Visit Website',
+      "https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=800",
+    link: "https://uipirate.com/",
+    linkLabel: "Visit Website",
     isExternal: true,
-    statusText: 'Live in Production',
-    technologies: ['Next.js 14', 'Tailwind CSS', 'Framer Motion', 'TypeScript', 'Core Web Vitals'],
+    statusText: "Live in Production",
+    technologies: ["Next.js 14", "Tailwind CSS", "Framer Motion", "TypeScript", "Core Web Vitals"],
     features: [
-      'High-converting modern landing page architecture',
-      'Fluid 60FPS Framer Motion animations & buttery micro-interactions',
-      'Curated dark theme with golden amber accent lighting',
-      'Ultra-responsive typography with Plus Jakarta Sans & Space Grotesk',
+      "High-converting modern landing page architecture",
+      "Fluid 60FPS Framer Motion animations & buttery micro-interactions",
+      "Curated dark theme with golden amber accent lighting",
+      "Ultra-responsive typography with Plus Jakarta Sans & Space Grotesk",
     ],
     stats: [
-      { label: 'Performance', value: '99/100' },
-      { label: 'Design System', value: 'Custom Dark' },
-      { label: 'Architecture', value: 'Next.js 14' },
+      { label: "Performance", value: "99/100" },
+      { label: "Design System", value: "Custom Dark" },
+      { label: "Architecture", value: "Next.js 14" },
     ],
   },
   {
-    id: 'uipirate-ui-system',
-    title: 'UI Pirate UI System',
-    category: 'uisystem',
-    tag: 'UI System & Tokens',
-    badge: 'Component Lab',
-    badgeType: 'live',
-    subtitle: 'Tactile Pill Button & Physics-Based Micro-Component Suite',
+    id: "uipirate-ui-system",
+    title: "UI Pirate UI System",
+    category: "uisystem",
+    tag: "UI System & Tokens",
+    badge: "Component Lab",
+    badgeType: "live",
+    subtitle: "Tactile Pill Button & Physics-Based Micro-Component Suite",
     description:
-      'A comprehensive, accessible UI system and component library engineered for modern web apps with dark mode and micro-interactions.',
+      "A comprehensive, accessible UI system and component library engineered for modern web apps with dark mode and micro-interactions.",
     longDescription:
-      'Engineered for tactile satisfaction and uncompromising accessibility. The UI Pirate component lab includes the signature tactile pill button, glassmorphic cards, custom form controls, and modular design tokens that elevate frontend experiences.',
-    image: '/uipirate_ui_system.jpg',
-    link: 'https://uipirate.com/componentlab/tactile-pill-button',
-    linkLabel: 'Explore Component Lab',
+      "Engineered for tactile satisfaction and uncompromising accessibility. The UI Pirate component lab includes the signature tactile pill button, glassmorphic cards, custom form controls, and modular design tokens that elevate frontend experiences.",
+    image: "/uipirate_ui_system.jpg",
+    link: "https://uipirate.com/componentlab/tactile-pill-button",
+    linkLabel: "Explore Component Lab",
     isExternal: true,
-    statusText: 'Interactive Lab Live',
-    technologies: ['React 18', 'Tailwind CSS', 'Framer Motion', 'Design Tokens', 'Radix Primitives'],
+    statusText: "Interactive Lab Live",
+    technologies: [
+      "React 18",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Design Tokens",
+      "Radix Primitives",
+    ],
     features: [
-      'Signature Tactile Pill Button with spring physics & haptic-feel feedback',
-      'Curated dark-mode token system with precise contrast hierarchy',
-      'WCAG AAA accessible keyboard navigation and screen reader support',
-      'Drop-in modular components ready for enterprise production',
+      "Signature Tactile Pill Button with spring physics & haptic-feel feedback",
+      "Curated dark-mode token system with precise contrast hierarchy",
+      "WCAG AAA accessible keyboard navigation and screen reader support",
+      "Drop-in modular components ready for enterprise production",
     ],
     stats: [
-      { label: 'Micro-Interactions', value: 'Spring Physics' },
-      { label: 'Accessibility', value: 'WCAG AAA' },
-      { label: 'Tokens', value: '100% Modular' },
+      { label: "Micro-Interactions", value: "Spring Physics" },
+      { label: "Accessibility", value: "WCAG AAA" },
+      { label: "Tokens", value: "100% Modular" },
     ],
   },
   {
-    id: 'camporaone',
-    title: 'Camporaone',
-    category: 'mobile',
-    tag: 'EdTech Mobile Ecosystem',
-    badge: 'In Stealth • Market Launch Soon',
-    badgeType: 'stealth',
-    subtitle: 'Next-Generation Smart School Management & Mobile App Ecosystem',
+    id: "camporaone",
+    title: "Camporaone",
+    category: "mobile",
+    tag: "EdTech Mobile Ecosystem",
+    badge: "In Stealth • Market Launch Soon",
+    badgeType: "stealth",
+    subtitle: "Next-Generation Smart School Management & Mobile App Ecosystem",
     description:
-      'Next-generation smart school management & learning mobile app connecting teachers, students, and parents seamlessly.',
+      "Next-generation smart school management & learning mobile app connecting teachers, students, and parents seamlessly.",
     longDescription:
-      'Camporaone redefines school management by unifying administration, real-time teacher-parent synergy, student grade tracking, digital attendance, and fee management into an intuitive, high-speed mobile application.',
-    image: '/evoskool_mobile.jpg',
-    link: '/contact?subject=Camporaone%20Private%20Demo%20Inquiry',
-    linkLabel: 'Request Private Demo',
+      "Camporaone redefines school management by unifying administration, real-time teacher-parent synergy, student grade tracking, digital attendance, and fee management into an intuitive, high-speed mobile application.",
+    image: "/evoskool_mobile.jpg",
+    link: "/contact?subject=Camporaone%20Private%20Demo%20Inquiry",
+    linkLabel: "Request Private Demo",
     isExternal: false,
-    statusText: 'Private Beta • Commercial Launch Q4 2026',
-    technologies: ['React Native', 'Expo', 'Android & iOS'],
+    statusText: "Private Beta • Commercial Launch Q4 2026",
+    technologies: ["React Native", "Expo", "Android & iOS"],
     features: [
-      'Synchronized multi-role portals for teachers, students, parents & administrators',
-      'Real-time automated attendance logging & instant absent alerts',
-      'Interactive grading analytics, homework dispatch, and report card generation',
-      'End-to-end encrypted school communication & fee installment tracking',
+      "Synchronized multi-role portals for teachers, students, parents & administrators",
+      "Real-time automated attendance logging & instant absent alerts",
+      "Interactive grading analytics, homework dispatch, and report card generation",
+      "End-to-end encrypted school communication & fee installment tracking",
     ],
     stats: [
-      { label: 'Market Status', value: 'Private Beta' },
-      { label: 'Platform', value: 'Android & iOS' },
-      { label: 'Expected Launch', value: 'Q4 2026' },
+      { label: "Market Status", value: "Private Beta" },
+      { label: "Platform", value: "Android & iOS" },
+      { label: "Expected Launch", value: "Q4 2026" },
     ],
     marketNotice:
-      'Commercial Status: Camporaone is currently under active private stealth development and has not yet made its public market debut. Currently undergoing private beta trials with select academic institutions. Architecture walkthroughs and private prototype demonstrations are available upon request.',
+      "Commercial Status: Camporaone is currently under active private stealth development and has not yet made its public market debut. Currently undergoing private beta trials with select academic institutions. Architecture walkthroughs and private prototype demonstrations are available upon request.",
   },
 ];
 
 const categories = [
-  { id: 'all', label: 'All Works', count: 3 },
-  { id: 'website', label: 'Websites & SaaS', count: 1 },
-  { id: 'uisystem', label: 'UI Systems', count: 1 },
-  { id: 'mobile', label: 'Mobile Apps', count: 1 },
+  { id: "all", label: "All Works", count: 3 },
+  { id: "website", label: "Websites & SaaS", count: 1 },
+  { id: "uisystem", label: "UI Systems", count: 1 },
+  { id: "mobile", label: "Mobile Apps", count: 1 },
 ];
 
 export default function WorkPage() {
-  const [activeCategory, setActiveCategory] = useState<'all' | 'website' | 'uisystem' | 'mobile'>('all');
+  const [activeCategory, setActiveCategory] = useState<"all" | "website" | "uisystem" | "mobile">(
+    "all"
+  );
 
   const filteredProjects =
-    activeCategory === 'all'
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
+    activeCategory === "all" ? projects : projects.filter((p) => p.category === activeCategory);
 
   return (
     <>
@@ -210,18 +210,20 @@ export default function WorkPage() {
                 return (
                   <button
                     key={cat.id}
-                    onClick={() => setActiveCategory(cat.id as any)}
-                    className={`flex items-center gap-2 rounded-full px-5 py-2.5 text-xs sm:text-sm font-semibold transition-all duration-300 ${isActive
-                        ? 'bg-amber-500 text-neutral-950 shadow-[0_0_20px_rgba(245,158,11,0.35)]'
-                        : 'border border-white/10 bg-[#121212] text-neutral-400 hover:border-amber-500/40 hover:text-white'
-                      }`}
+                    onClick={() => setActiveCategory(cat.id as Project["category"])}
+                    className={`flex items-center gap-2 rounded-full px-5 py-2.5 text-xs sm:text-sm font-semibold transition-all duration-300 ${
+                      isActive
+                        ? "bg-amber-500 text-neutral-950 shadow-[0_0_20px_rgba(245,158,11,0.35)]"
+                        : "border border-white/10 bg-[#121212] text-neutral-400 hover:border-amber-500/40 hover:text-white"
+                    }`}
                   >
                     <span>{cat.label}</span>
                     <span
-                      className={`flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-mono ${isActive
-                          ? 'bg-neutral-950/20 text-neutral-950 font-bold'
-                          : 'bg-white/10 text-neutral-400'
-                        }`}
+                      className={`flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-mono ${
+                        isActive
+                          ? "bg-neutral-950/20 text-neutral-950 font-bold"
+                          : "bg-white/10 text-neutral-400"
+                      }`}
                     >
                       {cat.count}
                     </span>
@@ -264,7 +266,7 @@ export default function WorkPage() {
                             {project.tag}
                           </span>
 
-                          {project.badgeType === 'live' ? (
+                          {project.badgeType === "live" ? (
                             <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-400">
                               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
                               {project.badge}
@@ -371,9 +373,11 @@ export default function WorkPage() {
                     <div className="lg:col-span-5">
                       <TiltCard className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#121212] shadow-2xl">
                         <div className="relative aspect-[16/11] w-full overflow-hidden bg-neutral-950">
-                          <img
+                          <Image
                             src={project.image}
                             alt={project.title}
+                            fill
+                            sizes="(max-width: 1024px) 100vw, 40vw"
                             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-85 group-hover:opacity-100"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] via-transparent to-transparent opacity-80" />
